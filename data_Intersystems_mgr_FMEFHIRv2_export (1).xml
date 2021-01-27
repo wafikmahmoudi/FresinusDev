@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for UNIX (Ubuntu Server LTS for x86-64) 2020.1 (Build 217_1U)" ts="2021-01-20 14:28:07">
+<Class name="FME.BP.PatientToSDA3Process">
+<Description>
+This business process takes a FHIR resource or Bundle as input. The FHIR input can
+only be of the configured FHIR version. This business process transforms the FHIR
+data into SDA3, forwards the SDA3 stream to a specified business host, receives
+the response from the business host, and returns a FHIR response.</Description>
+<ClassType>persistent</ClassType>
+<IncludeCode>HS.FHIRServer</IncludeCode>
+<Super>Ens.BusinessProcess,HS.HC.Util.Trace.Helper</Super>
+<TimeChanged>65721,48051.786758</TimeChanged>
+<TimeCreated>65720,57651.590715</TimeCreated>
+<Inheritance>right</Inheritance>
+
+<Property name="TargetConfigName">
+<Type>Ens.DataType.ConfigName</Type>
+<InitialExpression>"RoutingEnginetest1"</InitialExpression>
+</Property>
+
+<Property name="TransformClass">
+<Type>%Dictionary.Classname</Type>
+<InitialExpression>"FME.DT.PatientObjToSDA3"</InitialExpression>
+</Property>
+
+<Method name="OnRequest">
+<FormalSpec>pRequest:%Library.Persistent,*pResponse:%Library.Persistent</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Set tSC = $$$OK
+	
+	Try {
+		If pRequest.%IsA("FME.Msg.FMEToSDA3Request") {
+			Do ..ProcessRequest(pRequest, .pResponse)
+			
+		} Else {
+			Set tSC = $$$ERROR($$$GeneralError, "Request type not handled:  " _ pRequest.%ClassName(1)) Quit
+		}
+		
+	} Catch eException {
+		Set tSC = eException.AsStatus()
+	}
+	
+	Quit tSC
+]]></Implementation>
+</Method>
+
+<Method name="ProcessRequest">
+<FormalSpec><![CDATA[pRequest:HS.FHIRServer.Interop.Request,&pResponse:HS.FHIRServer.Interop.Response]]></FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+
+	//Set tSC = $ClassMethod(..TransformClass, "Transform", pRequest.Patient, .tSDA3Object)
+	$$$ThrowOnError(##class(FME.DT.PatientObjToSDA3).Transform(pRequest.Patient,.tSDA3Object))
+
+	Set tQuickStream = ##class(HS.SDA3.QuickStream).%New()
+	
+	$$$ThrowOnError(tSDA3Object.XMLExportToStream(.tQuickStream))
+	$$$LOGINFO(tQuickStream.Read())
+	
+	set pResponse = ##class(HS.Message.XMLMessage).%New()
+	Do pResponse.AdditionalInfo.SetAt(tQuickStream.%Id(),"QuickStreamId")
+	Do pResponse.AdditionalInfo.SetAt(tSDA3Object.Patient.MPIID,"PatientResourceId")
+		//wafik ajout
+         set xxl2 = ##class(EnsLib.EDI.XML.Document).%New(tQuickStream)
+      
+
+         set tSC = ..SendRequestSync(..TargetConfigName,xxl2)
+	
+	Quit
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>PatientToSDA3ProcessDefaultData</DefaultData>
+<Data name="PatientToSDA3ProcessDefaultData">
+<Subscript>"PatientToSDA3Process"</Subscript>
+<Value name="1">
+<Value>TransformClass</Value>
+</Value>
+<Value name="2">
+<Value>TraceOperations</Value>
+</Value>
+<Value name="3">
+<Value>TargetConfigName</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="FMEFHIRPKG.RoutingEnginetest1RoutingRule">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>65721,48514.98908</TimeChanged>
+<TimeCreated>65721,47769.331688</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>EnsLib.MsgRouter.RuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="EnsLib.MsgRouter.RoutingEngine" production="FMEFHIRPKG.FoundationProduction">
+<ruleSet name="" effectiveBegin="" effectiveEnd="">
+<rule name="">
+<constraint name="source" value="FME.BP.PatientToSDA3Process"></constraint>
+<when condition="1">
+<send transform="HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafik" target="testsortieHL7"></send>
+<return></return>
+</when>
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+</Export>
