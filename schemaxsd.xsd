@@ -1,0 +1,400 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Container">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="EventDescription"/>
+        <xs:element type="xs:string" name="SendingFacility"/>
+        <xs:element name="Patient">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PatientNumbers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="PatientNumber">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:int" name="Number"/>
+                          <xs:element type="xs:string" name="NumberType"/>
+                       
+                          <xs:element type="xs:string" name="ISOAssigningAuthority"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Name">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="GivenName"/>
+                    <xs:element type="xs:string" name="FamilyName"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:dateTime" name="BirthTime"/>
+              <xs:element name="Gender">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Code"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Race">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Code"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Races">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Race">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Addresses">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Address">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Street"/>
+                          <xs:element name="City">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="Code"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="State">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="Code"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Zip">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:short" name="Code"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ContactInfo">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="HomePhoneNumber"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+			    <xs:element name="Organizations">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Organization">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="MaritalStatus">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Code"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="EnteredAt">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Code"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Allergies">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Allergy">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Allergy">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                          <xs:element type="xs:string" name="Description"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Severity">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Reaction">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:dateTime" name="DiscoveryTime"/>
+                    <xs:element type="xs:dateTime" name="FromTime"/>
+                    <xs:element type="xs:string" name="Status"/>
+                    <xs:element name="EnteredAt">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Encounters">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Encounter">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="EncounterType"/>
+                    <xs:element name="AttendingClinicians">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CareProvider">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="SDACodingStandard"/>
+                                <xs:element type="xs:string" name="Code"/>
+                                <xs:element type="xs:string" name="Description"/>
+                                <xs:element name="Name">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="FamilyName"/>
+                                      <xs:element type="xs:string" name="GivenName"/>
+                                      <xs:element type="xs:string" name="NameSuffix"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="HealthCareFacility">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                          <xs:element name="Organization">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="Code"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="AdmittingClinician">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="SDACodingStandard"/>
+                          <xs:element type="xs:string" name="Code"/>
+                          <xs:element type="xs:string" name="Description"/>
+                          <xs:element name="Name">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="FamilyName"/>
+                                <xs:element type="xs:string" name="GivenName"/>
+                                <xs:element type="xs:string" name="NameSuffix"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:string" name="EncounterNumber"/>
+                    <xs:element type="xs:dateTime" name="FromTime"/>
+                    <xs:element type="xs:dateTime" name="EnteredOn"/>
+                    <xs:element type="xs:dateTime" name="ToTime"/>
+                    <xs:element name="EnteredAt">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="HealthFunds">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="HealthFund">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="HealthFundPlan">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="Code"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="HealthFund">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="Description"/>
+                                      <xs:element name="Address">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:string" name="Street"/>
+                                            <xs:element name="City">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element type="xs:string" name="Code"/>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="State">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element type="xs:string" name="Code"/>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="Zip">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element type="xs:int" name="Code"/>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="ContactInfo">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:string" name="WorkPhoneNumber"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="InsuredName">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="GivenName"/>
+                                      <xs:element type="xs:string" name="FamilyName"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="InsuredRelationship">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="Code"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element type="xs:string" name="MembershipNumber"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Diagnoses">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Diagnosis" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="EncounterNumber"/>
+                    <xs:element name="Diagnosis">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="SDACodingStandard"/>
+                          <xs:element type="xs:float" name="Code"/>
+                          <xs:element type="xs:string" name="Description"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:dateTime" name="EnteredOn"/>
+                    <xs:element name="DiagnosisType">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DiagnosingClinician">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="SDACodingStandard"/>
+                          <xs:element type="xs:string" name="Code"/>
+                          <xs:element type="xs:string" name="Description"/>
+                          <xs:element name="Name">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="FamilyName"/>
+                                <xs:element type="xs:string" name="GivenName"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Status">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                          <xs:element type="xs:string" name="Description"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="EnteredAt">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="Action"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
