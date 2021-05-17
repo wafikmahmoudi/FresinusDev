@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for UNIX (Ubuntu Server LTS for x86-64) 2020.2 (Build 199U)" ts="2021-05-17 15:28:56">
+<Project name="EnsExportProduction_2021-05-17 15-26-53_851+2" LastModified="2021-05-17 15:28:56.268667">
+  <ProjectDescription>Studio Project generated from Production 'FMEFHIRV2QUALIF2PKG.FoundationProduction' at 2021-05-17 13:26:53.851 UTC</ProjectDescription>
+  <Items>
+    <ProjectItem name="FME.BP.GetPatientByClinicCodeBPLToSQL" type="CLS"></ProjectItem>
+    <ProjectItem name="FME.BS.Declencheur.sqlsouhir" type="CLS"></ProjectItem>
+    <ProjectItem name="FME.DT.FME.DT.DTLAdmissionToSDASQL" type="CLS"></ProjectItem>
+    <ProjectItem name="User.AdmissionInputSQL" type="CLS"></ProjectItem>
+    <ProjectItem name="User.AdmissionSQL" type="CLS"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportProduction_2021-05-17 15-26-53_851+2.PTD" type="PTD"></ProjectItem>
+  </Items>
+</Project>
+
+
+<Class name="FME.BP.GetPatientByClinicCodeBPLToSQL">
+<Description>
+</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>65875,38744.764764</TimeChanged>
+<TimeCreated>65870,45362.643324</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='Ens.Request' response='Ens.Response' height='2000' width='2000' >
+<context>
+<property name='Key' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='ListeAdmissionResults' type='FME.Object.PatientByClinicCodeSQL' collection='list' instantiate='0' />
+<property name='ListeAdmissionResultsExport' type='FME.WS.DataExchange.tns.ThinExportEventExMulti' collection='list' instantiate='0' />
+<property name='Key2' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='ListeAdmissionResults2' type='FME.WS.DataExchange.tns.ThinClinic' collection='list' instantiate='0' />
+<property name='ListeAdmissionResults3' type='FME.Object.PatientByClinicCodeResults' collection='list' instantiate='0' />
+<property name='TStream' type='Ens.StreamContainer' instantiate='0' />
+<property name='BStream' type='HS.Message.XMLMessage' instantiate='0' />
+<property name='xxl2' type='EnsLib.EDI.XML.Document' instantiate='0' />
+<property name='ClinicGuid' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='req1' type='Ens.Request' instantiate='0' />
+<property name='res1' type='Ens.Response' instantiate='0' />
+<property name='resp' type='Ens.Response' instantiate='0' />
+<property name='DocGuid' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='DocID' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='DocUserName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='DocFullName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='DocEmail' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='DocIDLanguage' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='PatientResponseByCode' type='FME.WS.DataExchange.Response.GetPatientsByClinicCodeResponse' instantiate='0' >
+<annotation><![CDATA[FME.WS.DataExchange.Response.GetPatientsByClinicCodeResponse]]]]><![CDATA[></annotation>
+</property>
+<property name='PDocID' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='PDocFullName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='PDocEmail' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='NDocID' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='NDocFullName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='NDocEmail' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='PDocUserName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='NDocUserName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='PDocGuid' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='NDocGuid' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='PDocIDLanguage' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='NDocIDLanguage' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='ClinicCode' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='ClinicName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+</context>
+<sequence xend='200' yend='1150' >
+<code name='affectation liste Call1' xpos='200' ypos='250' disabled="true"/>
+<code name='AddClinic Information' xpos='200' ypos='350' >
+<![CDATA[ Set context.ClinicGuid = "fea55fd0-0129-4e24-9a51-cfd6c0df5855"
+ $$$LOGINFO(context.ClinicGuid)
+ Set context.ClinicCode = "99999"
+ $$$LOGINFO(context.ClinicCode)
+ Set context.ClinicName = "99999 - TEST 2"
+ $$$LOGINFO(context.ClinicName)]]]]><![CDATA[>
+</code>
+<call name='Call GetPatientByClinicCode' target='FME.WS.DataExchange.Operation.DataExchangeSoap' async='0' xpos='200' ypos='450' >
+<annotation><![CDATA["fea55fd0-0129-4e24-9a51-cfd6c0df5855""fea55fd0-0129-4e24-9a51-cfd6c0df5855"]]]]><![CDATA[></annotation>
+<request type='FME.WS.DataExchange.Request.GetPatientsByClinicCodeRequest' >
+<assign property="callrequest.patientStatusCodes" value="&quot;102&quot;" action="set" key="1" />
+<assign property="callrequest.patientStatusCodes" value="&quot;101&quot;" action="set" key="2" />
+<assign property="callrequest.patientStatusCodes" value="&quot;103&quot;" action="set" key="3" />
+<assign property="callrequest.patientStatusCodes" value="&quot;301&quot;" action="set" key="4" />
+<assign property="callrequest.patientStatusCodes" value="&quot;315&quot;" action="set" key="5" />
+<assign property="callrequest.patientStatusCodes" value="&quot;316&quot;" action="set" key="6" />
+<assign property="callrequest.patientStatusCodes" value="&quot;320&quot;" action="set" key="7" />
+<assign property="callrequest.patientStatusCodes" value="&quot;310&quot;" action="set" key="8" />
+<assign property="callrequest.patientStatusCodes" value="&quot;302&quot;" action="set" key="9" />
+<assign property="callrequest.patientStatusCodes" value="&quot;304&quot;" action="set" key="10" />
+<assign property="callrequest.patientStatusCodes" value="&quot;306&quot;" action="set" key="11" />
+<assign property="callrequest.patientStatusCodes" value="&quot;399&quot;" action="set" key="12" />
+<assign property="callrequest.patientStatusCodes" value="&quot;303&quot;" action="set" key="13" />
+<assign property="callrequest.loginInfo.ClinicGUID" value="context.ClinicGuid" action="set" />
+<assign property="callrequest.loginInfo.HierarchyGUID" value="context.ClinicGuid" action="set" />
+<assign property="callrequest.loginInfo.AppVersion" value="&quot;1.0&quot;" action="set" />
+<assign property="callrequest.exportType.importTypeName" value="&quot;FRTest&quot;" action="set" />
+<assign property="callrequest.loginInfo.User" value="&quot;Import-EaiFR&quot;" action="set" />
+<assign property="callrequest.promptList" value="&quot;PT_ADMISSION&quot;" action="set" key="1" />
+<assign property="callrequest.promptList" value="&quot;PT_CODE&quot;" action="set" key="2" />
+<assign property="callrequest.promptList" value="&quot;PT_STATUS_CLASSIFICATION&quot;" action="set" key="3" />
+<assign property="callrequest.promptList" value="&quot;PT_RESULT_STATUS&quot;" action="set" key="4" />
+<assign property="callrequest.promptList" value="&quot;PT_ADDRESS&quot;" action="set" key="5" />
+<assign property="callrequest.promptList" value="&quot;PT_BIRTH_PLACE&quot;" action="set" key="6" />
+<assign property="callrequest.promptList" value="&quot;PT_PATIENT_EMAIL&quot;" action="set" key="7" />
+<assign property="callrequest.promptList" value="&quot;PT_PHONE&quot;" action="set" key="8" />
+<assign property="callrequest.promptList" value="&quot;PT_NEPHROLOGIST&quot;" action="set" key="9" />
+<assign property="callrequest.promptList" value="&quot;PT_PREDIALYSIS_DOCTOR&quot;" action="set" key="10" />
+<assign property="callrequest.promptList" value="&quot;PT_FAMILYGP&quot;" action="set" key="11" />
+<assign property="callrequest.promptList" value="&quot;PT_INSURANCE&quot;" action="set" key="12" />
+<assign property="callrequest.promptList" value="&quot;PT_GENDER&quot;" action="set" key="13" />
+<assign property="callrequest.promptList" value="&quot;PT_LASTNAME&quot;" action="set" key="14" />
+<assign property="callrequest.promptList" value="&quot;PT_FIRSTNAME&quot;" action="set" key="15" />
+<assign property="callrequest.promptList" value="&quot;PT_BIRTH_DAY&quot;" action="set" key="16" />
+<assign property="callrequest.promptList" value="&quot;PT_DATE_OF_DISCHARGED&quot;" action="set" key="17" />
+<assign property="callrequest.ClinicCode" value="context.ClinicCode" action="set" />
+<assign property="callrequest.exportType.importTypeRevision" value="&quot;1&quot;" action="set" />
+<assign property="callrequest.loginInfo.Password" value="&quot;E%a8V#95QsvV&quot;" action="set" />
+<assign property="callrequest.exportType.importXmlFileName" value="&quot;?&quot;" action="set" />
+</request>
+<response type='FME.WS.DataExchange.Response.GetPatientsByClinicCodeResponse' >
+<assign property="context.PatientResponseByCode" value="callresponse" action="set" />
+</response>
+</call>
+<call name='Call GetPatientByClinicCode2' target='FME.WS.DataExchange.Operation.DataExchangeSoap' async='0' xpos='200' ypos='550' disabled="true">
+<annotation><![CDATA["fea55fd0-0129-4e24-9a51-cfd6c0df5855""fea55fd0-0129-4e24-9a51-cfd6c0df5855"]]]]><![CDATA[></annotation>
+<request type='FME.WS.DataExchange.Request.GetPatientsByClinicCodeRequest' >
+<assign property="callrequest.patientStatusCodes" value="&quot;102&quot;" action="set" key="1" />
+<assign property="callrequest.patientStatusCodes" value="&quot;103&quot;" action="set" key="2" />
+<assign property="callrequest.patientStatusCodes" value="&quot;301&quot;" action="set" key="3" />
+<assign property="callrequest.patientStatusCodes" value="&quot;315&quot;" action="set" key="4" />
+<assign property="callrequest.patientStatusCodes" value="&quot;316&quot;" action="set" key="5" />
+<assign property="callrequest.patientStatusCodes" value="&quot;320&quot;" action="set" key="6" />
+<assign property="callrequest.patientStatusCodes" value="&quot;310&quot;" action="set" key="7" />
+<assign property="callrequest.patientStatusCodes" value="&quot;302&quot;" action="set" key="8" />
+<assign property="callrequest.patientStatusCodes" value="&quot;304&quot;" action="set" key="9" />
+<assign property="callrequest.patientStatusCodes" value="&quot;306&quot;" action="set" key="10" />
+<assign property="callrequest.patientStatusCodes" value="&quot;399&quot;" action="set" key="11" />
+<assign property="callrequest.loginInfo.ClinicGUID" value="&quot;d5bff5ce-09ca-4c7e-b0d5-2a491f4edc6f&quot;" action="set" />
+<assign property="callrequest.loginInfo.HierarchyGUID" value="&quot;d5bff5ce-09ca-4c7e-b0d5-2a491f4edc6f&quot;" action="set" />
+<assign property="callrequest.loginInfo.AppVersion" value="&quot;1.0&quot;" action="set" />
+<assign property="callrequest.exportType.importTypeName" value="&quot;FRTest&quot;" action="set" />
+<assign property="callrequest.loginInfo.User" value="&quot;Import-EaiFR&quot;" action="set" />
+<assign property="callrequest.promptList" value="&quot;PT_ADMISSION&quot;" action="set" key="1" />
+<assign property="callrequest.promptList" value="&quot;PT_CODE&quot;" action="set" key="2" />
+<assign property="callrequest.promptList" value="&quot;PT_STATUS_CLASSIFICATION&quot;" action="set" key="3" />
+<assign property="callrequest.promptList" value="&quot;PT_RESULT_STATUS&quot;" action="set" key="4" />
+<assign property="callrequest.promptList" value="&quot;PT_ADDRESS&quot;" action="set" key="5" />
+<assign property="callrequest.promptList" value="&quot;PT_BIRTH_PLACE&quot;" action="set" key="6" />
+<assign property="callrequest.promptList" value="&quot;PT_PATIENT_EMAIL&quot;" action="set" key="7" />
+<assign property="callrequest.promptList" value="&quot;PT_PHONE&quot;" action="set" key="8" />
+<assign property="callrequest.promptList" value="&quot;PT_NEPHROLOGIST&quot;" action="set" key="9" />
+<assign property="callrequest.promptList" value="&quot;PT_PREDIALYSIS_DOCTOR&quot;" action="set" key="10" />
+<assign property="callrequest.promptList" value="&quot;PT_FAMILYGP&quot;" action="set" key="11" />
+<assign property="callrequest.promptList" value="&quot;PT_INSURANCE&quot;" action="set" key="12" />
+<assign property="callrequest.promptList" value="&quot;PT_GENDER&quot;" action="set" key="13" />
+<assign property="callrequest.promptList" value="&quot;PT_LASTNAME&quot;" action="set" key="14" />
+<assign property="callrequest.promptList" value="&quot;PT_FIRSTNAME&quot;" action="set" key="15" />
+<assign property="callrequest.promptList" value="&quot;PT_BIRTH_DAY&quot;" action="set" key="16" />
+<assign property="callrequest.promptList" value="&quot;PT_DATE_OF_DISCHARGED&quot;" action="set" key="17" />
+<assign property="callrequest.ClinicCode" value="&quot;00429&quot;" action="set" />
+<assign property="callrequest.exportType.importTypeRevision" value="&quot;1&quot;" action="set" />
+<assign property="callrequest.loginInfo.Password" value="&quot;E%a8V#95QsvV&quot;" action="set" />
+<assign property="callrequest.exportType.importXmlFileName" value="&quot;?&quot;" action="set" />
+</request>
+<response type='FME.WS.DataExchange.Response.GetPatientsByClinicCodeResponse' >
+<assign property="context.PatientResponseByCode" value="callresponse" action="set" />
+</response>
+</call>
+<code xpos='200' ypos='650' disabled="true">
+<![CDATA[ $$$LOGINFO("ICI")
+ $$$LOGINFO(context.ListeAdmissionResults3.GetAt(1))
+ $$$LOGINFO("ICI 2")
+ $$$LOGINFO(context.ListeAdmissionResults3.GetAt(1).ExportEventData)
+ $$$LOGINFO(context.ListeAdmissionResults3)
+ Set context.ClinicGUID =  "ea55fd0-0129-4e24-9a51-cfd6c0df5855"
+  ]]]]><![CDATA[>
+</code>
+<call name='TESTCALL' target='FME.WS.DataExchange.Operation.DataExchangeSoap' async='0' xpos='200' ypos='750' disabled="true">
+<request type='FME.WS.DataExchange.Request.GetUserInfoRequest' >
+<assign property="callrequest.userGuid" value="&quot;a101f25a-8a32-46ef-aa24-94b425df05c4&quot;" action="set" />
+<assign property="callrequest.loginInfo.User" value="&quot;Import-EaiFR&quot;" action="set" />
+<assign property="callrequest.loginInfo.Password" value="&quot;E%a8V#95Qsvv&quot;" action="set" />
+<assign property="callrequest.loginInfo.ClinicGUID" value="&quot;fea55fd0-0129-4e24-9a51-cfd6c0df5855&quot;" action="set" />
+<assign property="callrequest.loginInfo.HierarchyGUID" value="&quot;fea55fd0-0129-4e24-9a51-cfd6c0df5855&quot;" action="set" />
+<assign property="callrequest.loginInfo.AppVersion" value="&quot;1.0&quot;" action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+<call name='TESTCALL2' target='FME.WS.DataExchange.Operation.DataExchangeSoap' async='0' xpos='200' ypos='850' disabled="true">
+<request type='FME.WS.DataExchange.Request.GetUserInfoRequest' >
+<assign property="callrequest.userGuid" value="&quot;a101f25a-8a32-46ef-aa24-94b425df05c4&quot;" action="set" />
+<assign property="callrequest.loginInfo.User" value="&quot;Import-EaiFR&quot;" action="set" />
+<assign property="callrequest.loginInfo.Password" value="&quot;E%a8V#95Qsvv&quot;" action="set" />
+<assign property="callrequest.loginInfo.ClinicGUID" value="&quot;fea55fd0-0129-4e24-9a51-cfd6c0df5855&quot;" action="set" />
+<assign property="callrequest.loginInfo.HierarchyGUID" value="&quot;fea55fd0-0129-4e24-9a51-cfd6c0df5855&quot;" action="set" />
+<assign property="callrequest.loginInfo.AppVersion" value="&quot;1.0&quot;" action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+<foreach name='LoopAdmission' property='context.PatientResponseByCode.GetPatientsByClinicCodeResult' key='context.Key' xpos='200' ypos='950' xend='200' yend='1650' >
+<code xpos='200' ypos='250' >
+<![CDATA[ $$$LOGINFO("Foreach1")
+]]]]><![CDATA[>
+</code>
+<foreach name='ForeachExportData' property='context.ListeAdmissionResults.GetAt(context.Key)' key='context.Key2' xpos='200' ypos='350' xend='200' yend='350' disabled="true">
+<empty xpos='200' ypos='250' />
+</foreach>
+<code xpos='200' ypos='450' disabled="true">
+<![CDATA[ $$$LOGINFO(context.ListeAdmissionResults3.GetAt(context.Key).ExportEventData)
+  $$$LOGINFO(context.ListeAdmissionResults3.GetAt(context.Key))]]]]><![CDATA[>
+</code>
+<sequence name='GetInfoPractitioner' xpos='200' ypos='550' xend='200' yend='850' >
+<code xpos='200' ypos='250' >
+<![CDATA[ $$$LOGINFO(" get info Practitioner")
+ ]]]]><![CDATA[>
+</code>
+<transform name='GetGUIDPractitioner' class='FME.DT.GetGuidPractitioner' source='context.PatientResponseByCode.GetPatientsByClinicCodeResult.GetAt(context.Key)' target='context.resp' xpos='200' ypos='350' />
+<sequence name='Call GP Doctor' xpos='200' ypos='450' xend='200' yend='600' disabled="true">
+<if condition='$LENGTH(context.DocGuid) &gt; 0' xpos='200' ypos='250' xend='200' yend='500' >
+<true>
+<call name='CallWSInfoUserGP' target='FME.WS.DataExchange.Operation.DataExchangeSoap' async='0' xpos='470' ypos='400' >
+<request type='FME.WS.DataExchange.Request.GetUserInfoRequest' >
+<assign property="callrequest.userGuid" value="context.DocGuid" action="set" />
+<assign property="callrequest.loginInfo.User" value="&quot;Import-EaiFR&quot;" action="set" />
+<assign property="callrequest.loginInfo.Password" value="&quot;E%a8V#95Qsvv&quot;" action="set" />
+<assign property="callrequest.loginInfo.ClinicGUID" value="context.ClinicGuid" action="set" >
+<annotation><![CDATA["75e9d4f1-f9b9-4b9a-9e0c-ddf7ca3c1341"
+"fea55fd0-0129-4e24-9a51-cfd6c0df5855"]]]]><![CDATA[></annotation>
+</assign>
+<assign property="callrequest.loginInfo.HierarchyGUID" value="context.ClinicGuid" action="set" />
+<assign property="callrequest.loginInfo.AppVersion" value="&quot;1.0&quot;" action="set" />
+</request>
+<response type='FME.WS.DataExchange.Response.GetUserInfoResponse' >
+<assign property="context.DocID" value="callresponse.GetUserInfoResult.id" action="set" />
+<assign property="context.DocUserName" value="callresponse.GetUserInfoResult.UserName" action="set" />
+<assign property="context.DocFullName" value="callresponse.GetUserInfoResult.FullName" action="set" />
+<assign property="context.DocEmail" value="callresponse.GetUserInfoResult.EMail" action="set" />
+<assign property="context.DocIDLanguage" value="callresponse.GetUserInfoResult.IDLanguage" action="set" />
+</response>
+</call>
+</true>
+<false>
+<code xpos='200' ypos='400' >
+<![CDATA[  $$$LOGINFO("No GP")]]]]><![CDATA[>
+</code>
+</false>
+</if>
+</sequence>
+<sequence name='Call NEPHROLOGIST Doctor' xpos='200' ypos='550' xend='200' yend='600' >
+<if condition='$LENGTH(context.NDocGuid) &gt; 0' xpos='200' ypos='250' xend='200' yend='500' >
+<true>
+<call name='CallWSInfoUserN' target='FME.WS.DataExchange.Operation.DataExchangeSoap' async='0' xpos='470' ypos='400' >
+<request type='FME.WS.DataExchange.Request.GetUserInfoRequest' >
+<assign property="callrequest.userGuid" value="context.NDocGuid" action="set" />
+<assign property="callrequest.loginInfo.User" value="&quot;Import-EaiFR&quot;" action="set" />
+<assign property="callrequest.loginInfo.Password" value="&quot;E%a8V#95Qsvv&quot;" action="set" />
+<assign property="callrequest.loginInfo.ClinicGUID" value="context.ClinicGuid" action="set" />
+<assign property="callrequest.loginInfo.HierarchyGUID" value="context.ClinicGuid" action="set" />
+<assign property="callrequest.loginInfo.AppVersion" value="&quot;1.0&quot;" action="set" />
+</request>
+<response type='FME.WS.DataExchange.Response.GetUserInfoResponse' >
+<assign property="context.NDocID" value="callresponse.GetUserInfoResult.id" action="set" />
+<assign property="context.NDocUserName" value="callresponse.GetUserInfoResult.UserName" action="set" />
+<assign property="context.NDocFullName" value="callresponse.GetUserInfoResult.FullName" action="set" />
+<assign property="context.NDocEmail" value="callresponse.GetUserInfoResult.EMail" action="set" />
+<assign property="context.NDocIDLanguage" value="callresponse.GetUserInfoResult.IDLanguage" action="set" />
+</response>
+</call>
+</true>
+<false>
+<code xpos='200' ypos='400' >
+<![CDATA[  $$$LOGINFO("No NP")]]]]><![CDATA[>
+</code>
+</false>
+</if>
+</sequence>
+<sequence name='Call PREDIALYSIS Doctor' xpos='200' ypos='650' xend='200' yend='600' >
+<if condition='$LENGTH(context.PDocGuid) &gt; 0' xpos='200' ypos='250' xend='200' yend='500' >
+<true>
+<call name='CallWSInfoUserP' target='FME.WS.DataExchange.Operation.DataExchangeSoap' async='0' xpos='470' ypos='400' >
+<request type='FME.WS.DataExchange.Request.GetUserInfoRequest' >
+<assign property="callrequest.userGuid" value="context.PDocGuid" action="set" />
+<assign property="callrequest.loginInfo.User" value="&quot;Import-EaiFR&quot;" action="set" />
+<assign property="callrequest.loginInfo.Password" value="&quot;E%a8V#95Qsvv&quot;" action="set" />
+<assign property="callrequest.loginInfo.ClinicGUID" value="context.ClinicGuid" action="set" />
+<assign property="callrequest.loginInfo.HierarchyGUID" value="context.ClinicGuid" action="set" />
+<assign property="callrequest.loginInfo.AppVersion" value="&quot;1.0&quot;" action="set" />
+</request>
+<response type='FME.WS.DataExchange.Response.GetUserInfoResponse' >
+<assign property="context.PDocID" value="callresponse.GetUserInfoResult.id" action="set" />
+<assign property="context.PDocUserName" value="callresponse.GetUserInfoResult.UserName" action="set" />
+<assign property="context.PDocFullName" value="callresponse.GetUserInfoResult.FullName" action="set" />
+<assign property="context.PDocEmail" value="callresponse.GetUserInfoResult.EMail" action="set" />
+<assign property="context.PDocIDLanguage" value="callresponse.GetUserInfoResult.IDLanguage" action="set" />
+</response>
+</call>
+</true>
+<false>
+<code xpos='200' ypos='400' >
+<![CDATA[  $$$LOGINFO("No PP")]]]]><![CDATA[>
+</code>
+</false>
+</if>
+</sequence>
+<code xpos='200' ypos='750' >
+<![CDATA[  $$$LOGINFO("Fin Get Practitioner")]]]]><![CDATA[>
+</code>
+</sequence>
+<code xpos='200' ypos='650' >
+<![CDATA[  $$$LOGINFO("FIN ALL PRACTITIONER")]]]]><![CDATA[>
+</code>
+<transform name='AdmissionToSDAtest' class='FME.DT.PatientObjToSDA3.TEST' source='context.ListeAdmissionResults3.GetAt(context.Key)' target='context.BStream' xpos='200' ypos='750' disabled="true"/>
+<transform name='AdmissionToSDASQL' class='FME.DT.FME.DT.DTLAdmissionToSDASQL' source='context.PatientResponseByCode.GetPatientsByClinicCodeResult.GetAt(context.Key)' target='context.TStream' xpos='200' ypos='850' >
+<annotation><![CDATA[context.ListeAdmissionResults3.GetAt(context.Key)]]]]><![CDATA[></annotation>
+</transform>
+<call name='AdTOSDA' target='FME.BP.PatientToSDA3Process' async='0' xpos='200' ypos='950' disabled="true">
+<request type='FME.Msg.FMEPatientByCodeToSDA3Request' >
+<assign property="callrequest" value="context.ListeAdmissionResults3.GetAt(context.Key)" action="set" />
+</request>
+<response type='Ens.StreamContainer' >
+<assign property="context.TStream" value="callresponse" action="set" />
+</response>
+</call>
+<code name='Code Wafik' xpos='200' ypos='1050' >
+<![CDATA[ 	
+ 	set tSDA3Object = context.TStream
+ 	Set tQuickStream = ##class(HS.SDA3.QuickStream).%New()
+	
+	$$$ThrowOnError(tSDA3Object.XMLExportToStream(.tQuickStream))
+
+	$$$LOGINFO("tQuickStream"_tQuickStream.Read())
+	
+	
+       set pResponsewafik = ##class(HS.Message.XMLMessage).%New()
+       Do pResponsewafik.AdditionalInfo.SetAt(tQuickStream.%Id(),"QuickStreamId")
+       	Do pResponsewafik.AdditionalInfo.SetAt(tSDA3Object.Patient.MPIID,"PatientResourceId")
+		//wafik ajout
+         set context.xxl2 = ##class(EnsLib.EDI.XML.Document).%New(tQuickStream)
+      
+
+         //set tSC = ..SendRequestSync("RoutingEnginetest1",xxl2)
+	
+	//type 2
+	
+	set xx = ##class(Ens.StreamContainer).%New()
+	set xx.Stream = tQuickStream.Read()
+	//set xx.Type = "FC"]]]]><![CDATA[>
+</code>
+<call name='call hl7' target='RoutingEnginetest1' async='1' xpos='200' ypos='1150' disabled="true">
+<request type='EnsLib.EDI.XML.Document' >
+<assign property="callrequest" value="context.xxl2" action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+<code xpos='200' ypos='1250' >
+<![CDATA[ $$$LOGINFO(" tstream")
+ $$$LOGINFO(context.TStream)
+ $$$LOGINFO(" Ens.Request")
+ $$$LOGINFO(request)
+ Set context.TStream = request
+  $$$LOGINFO(" tstream")
+ $$$LOGINFO(context.TStream)
+ set pXML=##class(%Stream.GlobalCharacter).%New()
+ do pXML.Write(context.BStream)
+ $$$LOGINFO("SDAAAAAAAAAAA / : ")
+ set text = ""
+ do pXML.Rewind()
+ while 'pXML.AtEnd {
+ set text = pXML.Read()
+ }
+ // w text
+ $$$LOGINFO("SDA Stream for sdaaaaaaaaaa is created : "_text)
+   $$$LOGINFO("pResponsewafik : "_tQuickStream.Read())
+ 
+ ]]]]><![CDATA[>
+</code>
+<call name='SDA TO FHIR' target='HS.FHIR.DTL.Util.HC.SDA3.FHIR.Process' async='1' xpos='200' ypos='1350' disabled="true">
+<request type='Ens.StreamContainer' >
+<assign property="callrequest" value="pResponsewafik " action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+<call name='AppelBPLEncounter' target='BPLEncounterCreation' async='0' xpos='200' ypos='1450' disabled="true">
+<request type='Ens.Request' />
+<response type='Ens.Response' />
+</call>
+<code xpos='200' ypos='1550' disabled="true">
+<![CDATA[  Set context.DocGuid = ""
+ Set context.DocUserName = ""
+ Set context.DocID = ""
+ Set context.DocEmail = ""
+ Set context.DocIDLanguage = ""
+ Set context.DocFullName = ""
+   Set context.NDocGuid = ""
+ Set context.NDocUserName = ""
+ Set context.NDocID = ""
+ Set context.NDocEmail = ""
+ Set context.NDocIDLanguage = ""
+ Set context.NDocFullName = ""
+   Set context.PDocGuid = ""
+ Set context.PDocUserName = ""
+ Set context.PDocID = ""
+ Set context.PDocEmail = ""
+ Set context.PDocIDLanguage = ""
+ Set context.PDocFullName = ""]]]]><![CDATA[>
+</code>
+</foreach>
+<code xpos='200' ypos='1050' >
+<![CDATA[ $$$LOGINFO("fin")
+ Set context.DocGuid = ""
+ Set context.DocUserName = ""
+ Set context.DocID = ""
+ Set context.DocEmail = ""
+ Set context.DocIDLanguage = ""
+ Set context.DocFullName = ""]]]]><![CDATA[>
+</code>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
+
+
+<Class name="FME.BS.Declencheur.sqlsouhir">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>65867,52583.300434</TimeChanged>
+<TimeCreated>65867,52546.233132</TimeCreated>
+
+<Parameter name="INVOCATION">
+<Default>Queue</Default>
+</Parameter>
+
+<Parameter name="ADAPTER">
+<Default>Ens.InboundAdapter</Default>
+</Parameter>
+
+<Property name="ConfigCible">
+<Type>%String</Type>
+</Property>
+
+<Parameter name="SETTINGS">
+<Default><![CDATA[ConfigCible:Basic:selector?multiSelect=1&context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}]]></Default>
+</Parameter>
+
+<Method name="OnInit">
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    Set tSC=##super()  Quit:$$$ISERR(tSC) 
+    $$$sysTRACE("Start Process  ")
+    $$$LOGINFO("Start Process ")
+    Set pRequest = ##class(Ens.Request).%New()
+    Set pConfigCible = ..ConfigCible
+    
+    quit ..SendRequestAsync(pConfigCible, pRequest,"AsyncEnsRequest")
+    //quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="FME.DT.FME.DT.DTLAdmissionToSDASQL">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65870,45314.597839</TimeChanged>
+<TimeCreated>65870,45310.634626</TimeCreated>
+<DependsOn>FME.WS.DataExchange.tns.ThinExportEventResult,HS.SDA3.Container</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='FME.WS.DataExchange.tns.ThinExportEventResult' targetClass='HS.SDA3.Container' create='new' language='objectscript' >
+<code>
+<![CDATA[ $$$LOGINFO("SDA creation")
+ set EncounterNumber = ""
+ set mpiidpatient = ""
+ set FromTime = ""
+ set EncounterType  = ""
+ set AdmissionType = ""
+ set BirthPlace = ""
+ set PatientNumbersSSN = ""
+ set ConsultingCliniciansCode = ""
+ set ConsultingCliniciansFamilyName = ""
+ set ConsultingCliniciansGivenName = ""
+ set ConsultingCliniciansEmailAddress = ""
+ set AttendingCliniciansCode = ""
+ set AttendingCliniciansDescription = ""
+ set AttendingCliniciansFamilyName = ""
+ set AttendingCliniciansGivenName = ""
+ set AttendingCliniciansEmailAddress = ""
+ set PatientNumbersSSN = ""
+ set Gender = ""
+ set FamilyName = ""
+ set GivenName = ""
+ set BirthTime = ""
+ set ToTime = ""
+ set EndTime = ""
+ set OrganizationCode = ""
+ set OrganizationCodeSystemVersionId = ""
+ set ClinicName = ""
+ set Street = ""
+ set EmailAddress = ""
+ set HomePhoneNumber = ""
+ set EncounterCodedType = ""
+]]]]><![CDATA[></code>
+<foreach property='source.ExportEventData()' key='k1' >
+<foreach property='source.ExportEventData.(k1).values()' key='k2' >
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_CODE")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Encounters.(1).EncounterNumber' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='EncounterNumber' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.MPIID' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='mpiidpatient' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='mpidPatient' action='set' disabled='1' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.PatientNumbers.(1).Number' action='set' />
+<assign value='"MPIID"' property='target.Patient.PatientNumbers.(1).NumberType' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_ADMISSION")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Encounters.(1).FromTime' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='FromTime' action='set' />
+<assign value='source.ExportEventData.(k1).modDate' property='target.Encounters.(1).ToTime' action='set' disabled='1' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_STATUS_CLASSIFICATION")' >
+<true>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).singleValues.(1).Value,"101")' disabled='1' >
+<true>
+<assign value='""' property='Keys2' action='set' />
+<code>
+<![CDATA[ set idd = "%"_mpidPatient_"%"]]]]><![CDATA[></code>
+<sql>
+<![CDATA[ SELECT Key INTO :Keys2 FROM 
+ HSFHIR_I0001_S.Encounter
+ where
+ identifier LIKE :idd
+ and
+ dateEnd <> 9999
+ ]]]]><![CDATA[></sql>
+<if condition='Keys2 &apos;= ""' >
+<true>
+<sql>
+<![CDATA[ UPDATE HSFHIR_I0001_S.Encounter Set dateEnd = '99999' WHERE identifier = :mpidPatient
+]]]]><![CDATA[></sql>
+<assign value='"returned"' property='target.Patient.Comments' action='set' disabled='1' />
+</true>
+</if>
+</true>
+</if>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Encounters.(1).EncounterCodedType.Code' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='EncounterCodedType' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Encounters.(1).EncounterType' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='EncounterType' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_RESULT_STATUS")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Encounters.(1).AdmissionType.Code' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='AdmissionType' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_ADDRESS")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.Addresses.(1).Street' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='Street' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_BIRTH_PLACE")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.BirthPlace.Street' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='BirthPlace' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_PATIENT_EMAIL")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.ContactInfo.EmailAddress' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='EmailAddress' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_PHONE")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.ContactInfo.HomePhoneNumber' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='HomePhoneNumber' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_FAMILYGP")' >
+<true>
+<assign value='context.DocID' property='target.Patient.FamilyDoctor.EId' action='set' />
+<assign value='context.DocID' property='target.Patient.FamilyDoctor.Code' action='set' />
+<assign value='context.DocGuid' property='target.Patient.FamilyDoctor.PriorCodes.(1).Code' action='set' />
+<assign value='"GUID"' property='target.Patient.FamilyDoctor.PriorCodes.(1).CodeSystem' action='set' />
+<assign value='context.DocID' property='target.Patient.FamilyDoctor.PriorCodes.(2).Code' action='set' />
+<assign value='"ID"' property='target.Patient.FamilyDoctor.PriorCodes.(2).CodeSystem' action='set' />
+<assign value='"FAMILYGP"' property='target.Patient.FamilyDoctor.Description' action='set' />
+<assign value='context.DocEmail' property='target.Patient.FamilyDoctor.ContactInfo.EmailAddress' action='set' />
+<assign value='context.DocUserName' property='target.Patient.FamilyDoctor.Name.FamilyName' action='set' />
+<assign value='context.DocFullName' property='target.Patient.FamilyDoctor.Name.GivenName' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_PREDIALYSIS_DOCTOR")' >
+<true>
+<assign value='context.PDocID' property='target.Encounters.(k1).ConsultingClinicians.(1).EId' action='set' />
+<assign value='context.PDocID' property='target.Encounters.(k1).ConsultingClinicians.(1).Code' action='set' />
+<assign value='context.PDocID' property='ConsultingCliniciansCode' action='set' />
+<assign value='"PREDIALYSIS_DOCTOR"' property='target.Encounters.(k1).ConsultingClinicians.(1).Description' action='set' />
+<assign value='"PREDIALYSIS_DOCTOR"' property='ConsultingCliniciansDescription' action='set' />
+<assign value='context.PDocUserName' property='target.Encounters.(k1).ConsultingClinicians.(1).Name.FamilyName' action='set' />
+<assign value='context.PDocFullName' property='target.Encounters.(k1).ConsultingClinicians.(1).Name.GivenName' action='set' />
+<assign value='ConsultingCliniciansGivenName_" "_context.PDocFullName' property='ConsultingCliniciansGivenName' action='set' />
+<assign value='context.PDocUserName' property='ConsultingCliniciansFamilyName' action='set' />
+<assign value='context.PDocEmail' property='target.Encounters.(k1).ConsultingClinicians.(1).ContactInfo.EmailAddress' action='set' />
+<assign value='context.PDocEmail' property='ConsultingCliniciansEmailAddress' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_NEPHROLOGIST")' >
+<true>
+<assign value='context.NDocID' property='target.Encounters.(k1).AttendingClinicians.(1).EId' action='set' />
+<assign value='context.NDocID' property='target.Encounters.(k1).AttendingClinicians.(1).Code' action='set' />
+<assign value='context.NDocID' property='AttendingCliniciansCode' action='set' />
+<assign value='"NEPHROLOGIST"' property='target.Encounters.(k1).AttendingClinicians.(1).Description' action='set' />
+<assign value='"NEPHROLOGIST"' property='AttendingCliniciansDescription' action='set' />
+<assign value='context.NDocUserName' property='target.Encounters.(k1).AttendingClinicians.(1).Name.FamilyName' action='set' />
+<assign value='context.NDocFullName' property='target.Encounters.(k1).AttendingClinicians.(1).Name.GivenName' action='set' />
+<assign value='context.NDocFullName' property='AttendingCliniciansGivenName' action='set' />
+<assign value='AttendingCliniciansGivenName_" "_context.NDocUserName' property='AttendingCliniciansFamilyName' action='set' />
+<assign value='context.NDocEmail' property='target.Encounters.(k1).AttendingClinicians.(1).ContactInfo.EmailAddress' action='set' />
+<assign value='context.NDocEmail' property='AttendingCliniciansEmailAddress' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_INSURANCE")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.PatientNumbers.(2).Number' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='PatientNumbersSSN' action='set' />
+<assign value='"SSN"' property='target.Patient.PatientNumbers.(2).NumberType' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_GENDER")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.Gender.Code' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='Gender' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_LASTNAME")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.Name.FamilyName' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='FamilyName' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_FIRSTNAME")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.Name.GivenName' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='GivenName' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_BIRTH_DAY")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Patient.BirthTime' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='BirthTime' action='set' />
+</true>
+<false>
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"PT_DATE_OF_DISCHARGED")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Encounters.(1).ToTime' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='ToTime' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Encounters.(1).EndTime' action='set' />
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='EndTime' action='set' />
+<assign value='"2015-10-24T07:41:03+11:00"' property='target.Encounters.(1).ToTime' action='set' disabled='1' />
+</true>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</foreach>
+</foreach>
+<foreach property='source.ExportEventData()' key='k1' disabled='1' >
+<code>
+<![CDATA[ $$$LOGINFO("boucle 1")]]]]><![CDATA[></code>
+<foreach property='source.ExportEventData.(k1).values()' key='k2' >
+<if condition='..Contains(source.ExportEventData.(k1).values.(k2).Name,"CODE")' >
+<true>
+<assign value='source.ExportEventData.(k1).values.(k2).singleValues.(1).Value' property='target.Encounters.(k2).PriorVisitNumber' action='set' />
+</true>
+</if>
+<assign value='"E"' property='target.Encounters.(k2).AdmissionType.Code' action='set' />
+<assign value='"P"' property='target.Encounters.(k2).EncounterType' action='set' />
+<code>
+<![CDATA[ $$$LOGINFO("boucle 2")]]]]><![CDATA[></code>
+<assign value='source.ExportEventData.(k1).values.(k2).Name' property='target.Encounters.(k1).AdmissionType.PriorCodes.(k2).Code' action='set' />
+<assign value='source.ExportEventData.(k2).modDate' property='target.Encounters.(k2).AdmissionType.OriginalText' action='set' disabled='1' />
+<code>
+<![CDATA[ $$$LOGINFO("boucle 3")]]]]><![CDATA[></code>
+</foreach>
+</foreach>
+<code disabled='1' >
+<![CDATA[ $$$LOGINFO("boucle 4")]]]]><![CDATA[></code>
+<assign value='"123"' property='target.Patient.MPIID' action='set' disabled='1' />
+<assign value='"bader"' property='target.Patient.Name.FamilyName' action='set' disabled='1' />
+<assign value='"Bader"' property='target.Encounters.(1).Extension' action='set' disabled='1' />
+<assign value='"20855478"' property='target.Encounters.(1).EncounterNumber' action='set' disabled='1' />
+<assign value='context.ClinicCode' property='target.Patient.Organizations.(1).Organization.Code' action='set' />
+<assign value='context.ClinicCode' property='OrganizationCode' action='set' />
+<assign value='"Guid"' property='target.Patient.Organizations.(1).Organization.CodeSystemVersionId' action='set' />
+<assign value='"Guid"' property='OrganizationCodeSystemVersionId' action='set' />
+<assign value='context.ClinicGuid' property='target.Patient.Organizations.(1).Organization.EId' action='set' />
+<assign value='context.ClinicName' property='target.Patient.Organizations.(1).Organization.Description' action='set' />
+<assign value='context.ClinicName' property='ClinicName' action='set' />
+<assign value='context.ClinicGuid' property='target.Patient.Organizations.(1).Organization.InternalReference' action='set' />
+<code>
+<![CDATA[  $$$LOGINFO("insert into table wafik")]]]]><![CDATA[></code>
+<sql disabled='1' >
+<![CDATA[INSERT INTO SQLUser.E5AdmissionInter(PTADDRESS,PTADMISSION,PTBIRTHDAY, PTBIRTHPLACE, PTCLINIC, PTCODE, PTDATEOFDISCHARGED, PTFAMILYGP, PTFIRSTNAME, PTGENDER, PTINSURANCE, PTLASTNAME, PTNEPHROLOGIST, PTPATIENTEMAIL, PTPHONE, PTPREDIALYSISDOCTOR, PTRESULTSTATUS, PTSTATUSCLASSIFICATION) 
+VALUES
+(:Street, :FromTime, :BirthTime, :BirthPlace, :OrganizationCode, :mpiidpatient, :EndTime, 'PTFAMILYGP', :GivenName, :Gender, :PatientNumbersSSN, :FamilyName, :AttendingCliniciansFamilyName, :EmailAddress, :HomePhoneNumber, :AttendingCliniciansFamilyName, :ConsultingCliniciansGivenName, 'PTRESULTSTATUS','PTSTATUSCLASSIFICATION')
+]]]]><![CDATA[></sql>
+<code>
+<![CDATA[  $$$LOGINFO("EncounterType  "_EncounterType)
+    $$$LOGINFO("ConsultingCliniciansGivenName "_ConsultingCliniciansGivenName)
+      $$$LOGINFO("AttendingCliniciansFamilyName"_AttendingCliniciansFamilyName )
+        $$$LOGINFO("mpiidpatient, "_mpiidpatient)
+          $$$LOGINFO("OrganizationCode"_OrganizationCode)
+ ]]]]><![CDATA[></code>
+<sql>
+<![CDATA[INSERT INTO SQLUser.E5AdmissionInter(PTADDRESS,PTADMISSION,PTBIRTHDAY, PTBIRTHPLACE, PTCLINIC, PTCODE, PTDATEOFDISCHARGED, PTFAMILYGP, PTFIRSTNAME, PTGENDER, PTINSURANCE, PTLASTNAME, PTNEPHROLOGIST, PTPATIENTEMAIL, PTPHONE, PTPREDIALYSISDOCTOR, PTRESULTSTATUS, PTSTATUSCLASSIFICATION) 
+VALUES
+				    (:Street, :FromTime, :BirthTime,:BirthPlace,:OrganizationCode ,:mpiidpatient,:EndTime, 'PTFAMILYGP', :GivenName, :Gender,:PatientNumbersSSN, :FamilyName, :AttendingCliniciansFamilyName, :EmailAddress,:HomePhoneNumber,:ConsultingCliniciansGivenName, :AdmissionType,:EncounterCodedType)
+
+
+]]]]><![CDATA[></sql>
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="User.AdmissionInputSQL">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>65869,34483.997393</TimeChanged>
+<TimeCreated>65869,33063.946051</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>Ens.InboundAdapter</Default>
+</Parameter>
+
+<Method name="OnProcessInput">
+<FormalSpec>rset:%RegisteredObject,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+
+	SET myquery ="select * from SQLUser.AdmissionIntermediaire"
+    set statement=##class(%SQL.Statement).%New()
+   set status=statement.%Prepare(myquery)
+   
+   set rset=statement.%Execute()
+    
+    set pr=##class(User.AdmissionIntermediaireRequest).%New()
+   While rset.%Next()
+    {
+    $$$LOGINFO("BDD DATA... ")
+    	
+    	
+    	set pr.PTCLINIC=rset.%Get("PTCLINIC")
+    	set pr.PTCODE=rset.%Get("PTCODE")
+    	set pr.PTADMISSION=rset.%Get("PTADMISSION")
+ 		set pr.PTSTATUSCLASSIFICATION=rset.%Get("PTSTATUSCLASSIFICATION")
+ 		set pr.PTRESULTSTATUS=rset.%Get("PTRESULTSTATUS")
+ 		set pr.PTADDRESS=rset.%Get("PTADDRESS")
+ 		set pr.PTBIRTHPLACE=rset.%Get("PTBIRTHPLACE")
+ 		set pr.PTPATIENTEMAIL=rset.%Get("PTPATIENTEMAIL")
+ 		set pr.PTPHONE=rset.%Get("PTPHONE")
+ 		set pr.PTNEPHROLOGIST=rset.%Get("PTNEPHROLOGIST")
+ 		set pr.PTPREDIALYSISDOCTOR=rset.%Get("PTPREDIALYSISDOCTOR")
+ 		set pr.PTFAMILYGP=rset.%Get("PTFAMILYGP")
+ 		set pr.PTINSURANCE=rset.%Get("PTINSURANCE")
+ 		set pr.PTGENDER=rset.%Get("PTGENDER")
+ 		set pr.PTLASTNAME=rset.%Get("PTLASTNAME")
+ 		set pr.PTFIRSTNAME=rset.%Get("PTFIRSTNAME")
+ 		set pr.PTBIRTHDAY=rset.%Get("PTBIRTHDAY")
+ 		set pr.PTDATEOFDISCHARGED=rset.%Get("PTDATEOFDISCHARGED")
+ 		
+    	$$$LOGINFO("Here we GO !")
+ 		$$$LOGINFO("first name short : "_pr.PTFIRSTNAME)
+ 		
+ 		  set sc=..SendRequestAsync("User.AdmissionSortie",pr)
+ 		 
+ 		 //recuperation de l'id de la table
+ 		 SET myquery4 ="select ID from SQLUser.AdmissionIntermediaire where PTCODE="_pr.PTCODE
+ 		 set statement4=##class(%SQL.Statement).%New()
+ 		 set status4=statement4.%Prepare(myquery4)
+   
+ 		 set rset2=statement4.%Execute()
+ 		  While rset2.%Next()
+ 		  {
+ 		 set id=rset2.ID
+ 		 $$$LOGINFO("l'id" _id)
+ 		 
+ 		 }
+ 		 
+ 		  SET myquery2 ="delete from SQLUser.AdmissionIntermediaire where ID ="_id 
+ 		  set statement2=##class(%SQL.Statement).%New()
+ 		  set status2=statement2.%Prepare(myquery2)
+ 		  set rset=statement2.%Execute()
+ 		 $$$LOGINFO("l'id" _pr.PTCODE)
+ 		 //set x =pr.ID
+ 		//&sql(delete from SQLUser.E5AdmissionInter where ID=x)
+ 		 //$$$LOGINFO("suppres" _status2)
+ 	
+     		
+     	
+ }
+  
+ 	QUIT 1
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="User.AdmissionSQL">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>65881,37759.451626</TimeChanged>
+<TimeCreated>65853,47041.156899</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>Ens.InboundAdapter</Default>
+</Parameter>
+
+<Property name="TargetConfigNames">
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="1000"/>
+</Property>
+
+<Property name="QUERY">
+<Type>%String</Type>
+</Property>
+
+<Property name="QUERY2">
+<Type>%String</Type>
+</Property>
+
+<Parameter name="SETTINGS">
+<Default>TargetConfigNames,QUERY,QUERY2</Default>
+</Parameter>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Property StartID As %Integer [ InitialExpression = -1 ];
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Property QUERY As %String;
+
+]]></Content>
+</UDLText>
+
+<Method name="OnProcessInput">
+<FormalSpec>rset:%RegisteredObject,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	
+	SET myquery =..QUERY
+    set statement=##class(%SQL.Statement).%New()
+   set status=statement.%Prepare(myquery)
+   
+   set rset=statement.%Execute()
+    
+    set pr=##class(User.E5AdmissionInterRequest).%New()
+   While rset.%Next()
+    {
+    $$$LOGINFO("BDD DATA... ")
+    	
+    	
+    	set pr.PTCLINIC=rset.%Get("PTCLINIC")
+    	set pr.PTCODE=rset.%Get("PTCODE")
+    	set pr.PTADMISSION=rset.%Get("PTADMISSION")
+ 		set pr.PTSTATUSCLASSIFICATION=rset.%Get("PTSTATUSCLASSIFICATION")
+ 		set pr.PTRESULTSTATUS=rset.%Get("PTRESULTSTATUS")
+ 		set pr.PTADDRESS=rset.%Get("PTADDRESS")
+ 		set pr.PTBIRTHPLACE=rset.%Get("PTBIRTHPLACE")
+ 		set pr.PTPATIENTEMAIL=rset.%Get("PTPATIENTEMAIL")
+ 		set pr.PTPHONE=rset.%Get("PTPHONE")
+ 	
+ 		set pr.PTFAMILYGP=rset.%Get("PTFAMILYGP")
+ 		set pr.PTINSURANCE=rset.%Get("PTINSURANCE")
+ 		set pr.PTGENDER=rset.%Get("PTGENDER")
+ 		set pr.PTLASTNAME=rset.%Get("PTLASTNAME")
+ 		set pr.PTFIRSTNAME=rset.%Get("PTFIRSTNAME")
+ 		set pr.PTBIRTHDAY=rset.%Get("PTBIRTHDAY")
+ 		set pr.PTDATEOFDISCHARGED=rset.%Get("PTDATEOFDISCHARGED")
+ 		
+    	$$$LOGINFO("Here we GO !")
+ 		$$$LOGINFO("first name short : "_pr.PTFIRSTNAME)
+ 		
+ 		  set sc=..SendRequestAsync("User.AdmissionCible",pr)
+ 		 
+ 		 //recuperation de l'id de la table
+ 		 SET myquery4 ="select ID from SQLUser.E5AdmissionInter where PTCODE="_pr.PTCODE
+ 		 set statement4=##class(%SQL.Statement).%New()
+ 		 set status4=statement4.%Prepare(myquery4)
+   
+ 		 set rset2=statement4.%Execute()
+ 		  While rset2.%Next()
+ 		  {
+ 		 set id=rset2.ID
+ 		 $$$LOGINFO("l'id" _id)
+ 		 
+ 		 }
+ 		 
+ 		 SET myquery2 =..QUERY2_id 
+ 		  set statement2=##class(%SQL.Statement).%New()
+ 		  set status2=statement2.%Prepare(myquery2)
+ 		  set rset=statement2.%Execute()
+ 		 $$$LOGINFO("l'id" _pr.PTCODE)
+ 		 //set x =pr.ID
+ 		//&sql(delete from SQLUser.E5AdmissionInter where ID=x)
+ 		 //$$$LOGINFO("suppres" _status2)
+ 	
+     		
+     	
+ }
+  
+ 	QUIT 1
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Document name="EnsExportNotes.EnsExportProduction_2021-05-17 15-26-53_851+2.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportProduction_2021-05-17 15-26-53_851+2" description="Export Notes for export EnsExportProduction_2021-05-17 15-26-53_851+2">
+<![CDATA[<Deployment>
+<Creation>
+<Machine>LOCALHOST</Machine>
+<Instance>FMEIRIS</Instance>
+<Namespace>FMEFHIRV2QUALIF2</Namespace>
+<SourceProduction>FMEFHIRV2QUALIF2PKG.FoundationProduction</SourceProduction>
+<Username>wmahmoudi</Username>
+<UTC>2021-05-17 13:28:56.262</UTC>
+</Creation>
+<Notes>
+</Notes>
+<Contents>
+<ExportProject>EnsExportProduction_2021-05-17 15-26-53_851+2</ExportProject>
+<Item num="1">FME.BP.GetPatientByClinicCodeBPLToSQL.CLS</Item>
+<Item num="2">FME.BS.Declencheur.sqlsouhir.CLS</Item>
+<Item num="3">FME.DT.FME.DT.DTLAdmissionToSDASQL.CLS</Item>
+<Item num="4">User.AdmissionInputSQL.CLS</Item>
+<Item num="5">User.AdmissionSQL.CLS</Item>
+</Contents>
+<ProductionClassInExport></ProductionClassInExport>
+</Deployment>
+
+]]></ProjectTextDocument>
+</Document></Export>
