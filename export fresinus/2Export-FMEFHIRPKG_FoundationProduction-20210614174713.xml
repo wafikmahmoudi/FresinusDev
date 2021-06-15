@@ -1,0 +1,1465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for UNIX (Ubuntu Server LTS for x86-64) 2020.2 (Build 199U)" ts="2021-06-14 17:49:34">
+<Project name="EnsExportProduction_2021-06-14 17-47-11_761+2" LastModified="2021-06-14 17:49:34.397033">
+  <ProjectDescription>Studio Project generated from Production 'FMEFHIRPKG.FoundationProduction' at 2021-06-14 15:47:11.761 UTC</ProjectDescription>
+  <Items>
+    <ProjectItem name="FME.WS.DataExchange.DataExchangeSoap" type="CLS"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportProduction_2021-06-14 17-47-11_761+2.PTD" type="PTD"></ProjectItem>
+  </Items>
+</Project>
+
+
+<Class name="FME.WS.DataExchange.DataExchangeSoap">
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%SOAP.WebClient</Super>
+<TimeChanged>65708,61314.685118</TimeChanged>
+<TimeCreated>65708,61314.685118</TimeCreated>
+
+<Parameter name="LOCATION">
+<Description>
+This is the URL used to access the web service.</Description>
+<Default>https://www.euclid.fmc-ag.com/EuCliDServices.FR/DataExchange.asmx</Default>
+</Parameter>
+
+<Parameter name="NAMESPACE">
+<Description>
+This is the namespace used by the Service</Description>
+<Default>http://tempuri.org/</Default>
+</Parameter>
+
+<Parameter name="OUTPUTTYPEATTRIBUTE">
+<Description>
+Use xsi:type attribute for literal types.</Description>
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="SECURITYIN">
+<Description>
+Determines handling of Security header.</Description>
+<Default>ALLOW</Default>
+</Parameter>
+
+<Parameter name="SERVICENAME">
+<Description>
+This is the name of the Service</Description>
+<Default>DataExchange</Default>
+</Parameter>
+
+<Parameter name="SOAPVERSION">
+<Description>
+This service supports both SOAP 1.1 and SOAP 1.2.</Description>
+</Parameter>
+
+<Method name="AttachmentImportStructure">
+<Final>1</Final>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinImportAttachment</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("AttachmentImportStructure").Invoke($this,"http://tempuri.org/AttachmentImportStructure")
+]]></Implementation>
+</Method>
+
+<Method name="ChangeUser">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,userGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),EnableClassicLogin:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%Boolean</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("ChangeUser").Invoke($this,"http://tempuri.org/ChangeUser",.loginInfo,.userGuid,.EnableClassicLogin)
+]]></Implementation>
+</Method>
+
+<Method name="DataExport">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExport").Invoke($this,"http://tempuri.org/DataExport",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.idTaskType)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportActivePharmTherapyByPatientID">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,PatientID:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportActivePharmTherapyByPatientID").Invoke($this,"http://tempuri.org/DataExportActivePharmTherapyByPatientID",.loginInfo,.exportType,.promptList,.idTaskType,.PatientID)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportByEventGuid">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportByEventGuid").Invoke($this,"http://tempuri.org/DataExportByEventGuid",.loginInfo,.exportType,.promptList,.idTaskType,.eventGuid)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportByPatientGuid">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,eventStatus:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="eventStatus"),patientId:FME.WS.DataExchange.s1.guid(REQUIRED=1),byRefDate:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportByPatientGuid").Invoke($this,"http://tempuri.org/DataExportByPatientGuid",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.idTaskType,.eventStatus,.patientId,.byRefDate)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportByRefDate">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportByRefDate").Invoke($this,"http://tempuri.org/DataExportByRefDate",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.idTaskType)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportByStatus">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,eventStatus:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="eventStatus")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportByStatus").Invoke($this,"http://tempuri.org/DataExportByStatus",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.idTaskType,.eventStatus)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportByStatusAndPatient">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,eventStatus:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="eventStatus"),patientID:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportByStatusAndPatient").Invoke($this,"http://tempuri.org/DataExportByStatusAndPatient",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.idTaskType,.eventStatus,.patientID)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportByStatusAndPatientAndRefDate">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,eventStatus:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="eventStatus"),patientID:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportByStatusAndPatientAndRefDate").Invoke($this,"http://tempuri.org/DataExportByStatusAndPatientAndRefDate",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.idTaskType,.eventStatus,.patientID)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportByStatusAndRefDate">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,eventStatus:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="eventStatus")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportByStatusAndRefDate").Invoke($this,"http://tempuri.org/DataExportByStatusAndRefDate",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.idTaskType,.eventStatus)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportClinicSetup">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),ClinicGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportClinicSetup").Invoke($this,"http://tempuri.org/DataExportClinicSetup",.loginInfo,.exportType,.promptList,.ClinicGuid)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportMulti">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,requests:%ListOfObjects(ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportRequest",XMLITEMNAME="ThinExportRequest",XMLNAME="requests"),patientID:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportEventResultExtended",XMLITEMNAME="ThinExportEventResultExtended",XMLNAME="DataExportMultiResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportMulti").Invoke($this,"http://tempuri.org/DataExportMulti",.loginInfo,.exportType,.requests,.patientID)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportMultiClinic">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,requests:%ListOfObjects(ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportRequestMulti",CLASSNAME=1,XMLITEMNAME="ThinExportRequestMulti",XMLNAME="requests")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportEventResultExtendedMulti",XMLITEMNAME="ThinExportEventResultExtendedMulti",XMLNAME="DataExportMulti_ClinicResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportMulti_Clinic").Invoke($this,"http://tempuri.org/DataExportMulti_Clinic",.loginInfo,.exportType,.requests)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportMultiPatient">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,requests:%ListOfObjects(ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportRequestMulti",CLASSNAME=1,XMLITEMNAME="ThinExportRequestMulti",XMLNAME="requests")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportEventResultExtendedMulti",XMLITEMNAME="ThinExportEventResultExtendedMulti",XMLNAME="DataExportMulti_PatientResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportMulti_Patient").Invoke($this,"http://tempuri.org/DataExportMulti_Patient",.loginInfo,.exportType,.requests)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportMultiPatientID">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,requests:%ListOfObjects(ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportRequestMultiV2",XMLITEMNAME="ThinExportRequestMultiV2",XMLNAME="requests")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportEventResultExtendedMulti",XMLITEMNAME="ThinExportEventResultExtendedMulti",XMLNAME="DataExportMulti_PatientIDResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportMulti_PatientID").Invoke($this,"http://tempuri.org/DataExportMulti_PatientID",.loginInfo,.exportType,.requests)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescription">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,date:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescription").Invoke($this,"http://tempuri.org/DataExportPrescription",.loginInfo,.exportType,.date,.promptList)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionByEventGuid">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),EventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionByEventGuid").Invoke($this,"http://tempuri.org/DataExportPrescriptionByEventGuid",.loginInfo,.exportType,.promptList,.EventGuid)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionByPatient">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),PatientID:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionByPatient").Invoke($this,"http://tempuri.org/DataExportPrescriptionByPatient",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.PatientID)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionByPatientExtended">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),PatientID:%String,includeRules:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResultEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionByPatientExtended").Invoke($this,"http://tempuri.org/DataExportPrescriptionByPatientExtended",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.PatientID,.includeRules)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionLastVersionsAllPatient">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionLastVersionsAllPatient").Invoke($this,"http://tempuri.org/DataExportPrescriptionLastVersionsAllPatient",.loginInfo,.exportType,.promptList)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionLastVersionsAllPatientExtended">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,IncludeInactivePatient:%Boolean(REQUIRED=1),includeRules:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResultEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionLastVersionsAllPatientExtended").Invoke($this,"http://tempuri.org/DataExportPrescriptionLastVersionsAllPatientExtended",.loginInfo,.exportType,.promptList,.idTaskType,.IncludeInactivePatient,.includeRules)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionLastVersionsAllPatientExtendedByModDate">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,IncludeInactivePatient:%Boolean(REQUIRED=1),includeRules:%Boolean(REQUIRED=1),dtFrom:%TimeStamp(REQUIRED=1),dtTo:%TimeStamp(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResultEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionLastVersionsAllPatientExtendedByModDate").Invoke($this,"http://tempuri.org/DataExportPrescriptionLastVersionsAllPatientExtendedByModDate",.loginInfo,.exportType,.promptList,.idTaskType,.IncludeInactivePatient,.includeRules,.dtFrom,.dtTo)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionLastVersionsByPatient">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),PatientID:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionLastVersionsByPatient").Invoke($this,"http://tempuri.org/DataExportPrescriptionLastVersionsByPatient",.loginInfo,.exportType,.promptList,.PatientID)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionLastVersionsByPatientExtended">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),idTaskType:%String,patientID:%String,includeRules:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResultEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionLastVersionsByPatientExtended").Invoke($this,"http://tempuri.org/DataExportPrescriptionLastVersionsByPatientExtended",.loginInfo,.exportType,.promptList,.idTaskType,.patientID,.includeRules)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionRules">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,taskGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinRule",XMLITEMNAME="ThinRule",XMLNAME="DataExportPrescriptionRulesResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionRules").Invoke($this,"http://tempuri.org/DataExportPrescriptionRules",.loginInfo,.exportType,.taskGuid)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportPrescriptionsByPatientId">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),PatientID:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportPrescriptionsByPatientId").Invoke($this,"http://tempuri.org/DataExportPrescriptionsByPatientId",.loginInfo,.exportType,.dateFrom,.dateTo,.promptList,.PatientID)
+]]></Implementation>
+</Method>
+
+<Method name="DataExportScheduledTreatments">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),idTaskType:%String,IncludeInactivePatient:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResultEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataExportScheduledTreatments").Invoke($this,"http://tempuri.org/DataExportScheduledTreatments",.loginInfo,.exportType,.dateFrom,.dateTo,.idTaskType,.IncludeInactivePatient)
+]]></Implementation>
+</Method>
+
+<Method name="DataImport">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,importType:FME.WS.DataExchange.tns.ThinImportType,promptValues:%ListOfObjects(ELEMENTTYPE="FME.WS.DataExchange.tns.ThinImportEvent",CLASSNAME=1,XMLITEMNAME="ThinImportEvent",XMLNAME="promptValues"),idTaskType:%String,testMode:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinEventResult",CLASSNAME=1,XMLITEMNAME="ThinEventResult",XMLNAME="DataImportResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataImport").Invoke($this,"http://tempuri.org/DataImport",.loginInfo,.importType,.promptValues,.idTaskType,.testMode)
+]]></Implementation>
+</Method>
+
+<Method name="DataImportByGuid">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,importType:FME.WS.DataExchange.tns.ThinImportType,promptValue:FME.WS.DataExchange.tns.ThinImportEvent(CLASSNAME=1),testMode:%Boolean(REQUIRED=1),isEvent:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataImportByGuid").Invoke($this,"http://tempuri.org/DataImportByGuid",.loginInfo,.importType,.promptValue,.testMode,.isEvent)
+]]></Implementation>
+</Method>
+
+<Method name="DataImportClinicEventByGuid">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,importType:FME.WS.DataExchange.tns.ThinImportType,promptValue:FME.WS.DataExchange.tns.ThinImportEvent(CLASSNAME=1),testMode:%Boolean(REQUIRED=1),isEvent:%Boolean(REQUIRED=1),idTaskType:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("DataImportClinicEventByGuid").Invoke($this,"http://tempuri.org/DataImportClinicEventByGuid",.loginInfo,.importType,.promptValue,.testMode,.isEvent,.idTaskType)
+]]></Implementation>
+</Method>
+
+<Method name="DeleteQueue">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,ID:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinQueueResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("DeleteQueue").Invoke($this,"http://tempuri.org/DeleteQueue",.loginInfo,.exportType,.ID)
+]]></Implementation>
+</Method>
+
+<Method name="ExportPRRData">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,importType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),typeOfExport:%String,listTaskType:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="listTaskType")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinPRRExport</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("ExportPRRData").Invoke($this,"http://tempuri.org/ExportPRRData",.loginInfo,.importType,.dateFrom,.dateTo,.typeOfExport,.listTaskType)
+]]></Implementation>
+</Method>
+
+<Method name="ExportRDPData">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,importType:FME.WS.DataExchange.tns.ThinImportType,dateFrom:%TimeStamp(REQUIRED=1),dateTo:%TimeStamp(REQUIRED=1),patRDPReg:%Boolean(REQUIRED=1),patRDPPer:%Boolean(REQUIRED=1),patPORReg:%Boolean(REQUIRED=1),patPORPer:%Boolean(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinRDPExport</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("ExportRDPData").Invoke($this,"http://tempuri.org/ExportRDPData",.loginInfo,.importType,.dateFrom,.dateTo,.patRDPReg,.patRDPPer,.patPORReg,.patPORPer)
+]]></Implementation>
+</Method>
+
+<Method name="ExportRDPVerticaData">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,importType:FME.WS.DataExchange.tns.ThinImportType,verticaScriptName:%String,year:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinRDPExport</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("ExportRDPVerticaData").Invoke($this,"http://tempuri.org/ExportRDPVerticaData",.loginInfo,.importType,.verticaScriptName,.year)
+]]></Implementation>
+</Method>
+
+<Method name="ExportRequestParameters">
+<Final>1</Final>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportRequest</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("ExportRequestParameters").Invoke($this,"http://tempuri.org/ExportRequestParameters")
+]]></Implementation>
+</Method>
+
+<Method name="GetAcidConcentrate">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,acidConcentrateGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinAcidConcentrate</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAcidConcentrate").Invoke($this,"http://tempuri.org/GetAcidConcentrate",.loginInfo,.acidConcentrateGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetAcidConcentrateByCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,Code:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinAcidConcentrate</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAcidConcentrateByCode").Invoke($this,"http://tempuri.org/GetAcidConcentrateByCode",.loginInfo,.Code)
+]]></Implementation>
+</Method>
+
+<Method name="GetActivePrescriptionQueue">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,patientList:%ListOfDataTypes(ELEMENTTYPE="FME.WS.DataExchange.s1.guid",XMLITEMNAME="guid",XMLNAME="patientList")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinActivePrescriptionQueue</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetActivePrescriptionQueue").Invoke($this,"http://tempuri.org/GetActivePrescriptionQueue",.loginInfo,.exportType,.patientList)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllAcidConcentrate">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinAcidConcentrate",XMLITEMNAME="ThinAcidConcentrate",XMLNAME="GetAllAcidConcentrateResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllAcidConcentrate").Invoke($this,"http://tempuri.org/GetAllAcidConcentrate",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllBloodLine">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinBloodLine",XMLITEMNAME="ThinBloodLine",XMLNAME="GetAllBloodLineResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllBloodLine").Invoke($this,"http://tempuri.org/GetAllBloodLine",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllClinics">
+<Final>1</Final>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinClinic",XMLITEMNAME="ThinClinic",XMLNAME="GetAllClinicsResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllClinics").Invoke($this,"http://tempuri.org/GetAllClinics")
+]]></Implementation>
+</Method>
+
+<Method name="GetAllClinicsAtDate">
+<Final>1</Final>
+<FormalSpec>dtYearClosing:%TimeStamp(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinClinic",XMLITEMNAME="ThinClinic",XMLNAME="GetAllClinicsAtDateResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllClinicsAtDate").Invoke($this,"http://tempuri.org/GetAllClinicsAtDate",.dtYearClosing)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllClinicsAtDateV2">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dtFrom:%TimeStamp(REQUIRED=1),dtTo:%TimeStamp(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinClinic",XMLITEMNAME="ThinClinic",XMLNAME="GetAllClinicsAtDateV2Result"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllClinicsAtDateV2").Invoke($this,"http://tempuri.org/GetAllClinicsAtDateV2",.loginInfo,.exportType,.dtFrom,.dtTo)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllDialyzer">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,idProduct:%xsd.int(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinDialyzer",XMLITEMNAME="ThinDialyzer",XMLNAME="GetAllDialyzerResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllDialyzer").Invoke($this,"http://tempuri.org/GetAllDialyzer",.loginInfo,.idProduct)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllICDbyFirstCharsOfCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,firstChars:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinICD",XMLITEMNAME="ThinICD",XMLNAME="GetAllICDbyFirstCharsOfCodeResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllICDbyFirstCharsOfCode").Invoke($this,"http://tempuri.org/GetAllICDbyFirstCharsOfCode",.loginInfo,.firstChars)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllMachineCount">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%xsd.int</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllMachineCount").Invoke($this,"http://tempuri.org/GetAllMachineCount",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllMachineInfo">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinMachineInfo",XMLITEMNAME="ThinMachineInfo",XMLNAME="GetAllMachineInfoResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllMachineInfo").Invoke($this,"http://tempuri.org/GetAllMachineInfo",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllNeedle">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinNeedle",XMLITEMNAME="ThinNeedle",XMLNAME="GetAllNeedleResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllNeedle").Invoke($this,"http://tempuri.org/GetAllNeedle",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllResourcesCount">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%xsd.int</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllResourcesCount").Invoke($this,"http://tempuri.org/GetAllResourcesCount",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllShiftCount">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%xsd.int</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllShiftCount").Invoke($this,"http://tempuri.org/GetAllShiftCount",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllergyFake">
+<Final>1</Final>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinImportAllergy</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllergyFake").Invoke($this,"http://tempuri.org/GetAllergyFake")
+]]></Implementation>
+</Method>
+
+<Method name="GetAllergyInfo">
+<Final>1</Final>
+<FormalSpec>eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),allergyTypeGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinAllergy</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllergyInfo").Invoke($this,"http://tempuri.org/GetAllergyInfo",.eventGuid,.allergyTypeGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetAllergyInfoEx">
+<Final>1</Final>
+<FormalSpec>eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),allergyTypeGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinAllergyEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetAllergyInfoEx").Invoke($this,"http://tempuri.org/GetAllergyInfoEx",.eventGuid,.allergyTypeGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetBloodLine">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,bloodLineGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinBloodLine</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetBloodLine").Invoke($this,"http://tempuri.org/GetBloodLine",.loginInfo,.bloodLineGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetBloodLineByCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,Code:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinBloodLine</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetBloodLineByCode").Invoke($this,"http://tempuri.org/GetBloodLineByCode",.loginInfo,.Code)
+]]></Implementation>
+</Method>
+
+<Method name="GetCacheVersion">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,refGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),group:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%Integer</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetCacheVersion").Invoke($this,"http://tempuri.org/GetCacheVersion",.loginInfo,.exportType,.refGuid,.group)
+]]></Implementation>
+</Method>
+
+<Method name="GetClinicByCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,clinicCode:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinClinic</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetClinicByCode").Invoke($this,"http://tempuri.org/GetClinicByCode",.loginInfo,.clinicCode)
+]]></Implementation>
+</Method>
+
+<Method name="GetClinicByExternalCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,clinicCodeName:%String,clinicCodeValue:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinClinic</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetClinicByExternalCode").Invoke($this,"http://tempuri.org/GetClinicByExternalCode",.loginInfo,.clinicCodeName,.clinicCodeValue)
+]]></Implementation>
+</Method>
+
+<Method name="GetClinicByGuid">
+<Final>1</Final>
+<FormalSpec>clinicGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinClinic</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetClinicByGuid").Invoke($this,"http://tempuri.org/GetClinicByGuid",.clinicGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetClinicByName">
+<Final>1</Final>
+<FormalSpec>importType:FME.WS.DataExchange.tns.ThinImportType,clinicName:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinClinic</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetClinicByName").Invoke($this,"http://tempuri.org/GetClinicByName",.importType,.clinicName)
+]]></Implementation>
+</Method>
+
+<Method name="GetClinicInfoFieldByCode">
+<Final>1</Final>
+<FormalSpec>clinicCode:%String,fieldName:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%String</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetClinicInfoFieldByCode").Invoke($this,"http://tempuri.org/GetClinicInfoFieldByCode",.clinicCode,.fieldName)
+]]></Implementation>
+</Method>
+
+<Method name="GetClinicInfoFieldByGuid">
+<Final>1</Final>
+<FormalSpec>clinicGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),fieldName:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%String</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetClinicInfoFieldByGuid").Invoke($this,"http://tempuri.org/GetClinicInfoFieldByGuid",.clinicGuid,.fieldName)
+]]></Implementation>
+</Method>
+
+<Method name="GetClinicShift">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,shiftType:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinClinicShiftEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetClinicShift").Invoke($this,"http://tempuri.org/GetClinicShift",.loginInfo,.shiftType)
+]]></Implementation>
+</Method>
+
+<Method name="GetClinicsByUser">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinClinic",XMLITEMNAME="ThinClinic",XMLNAME="GetClinicsByUserResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetClinicsByUser").Invoke($this,"http://tempuri.org/GetClinicsByUser",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetCommonPatientListTable">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,filterExpression:%String,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.GetCommonPatientListTableResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetCommonPatientListTable").Invoke($this,"http://tempuri.org/GetCommonPatientListTable",.loginInfo,.exportType,.filterExpression,.promptList)
+]]></Implementation>
+</Method>
+
+<Method name="GetDataFromMachine">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinMachineData</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetDataFromMachine").Invoke($this,"http://tempuri.org/GetDataFromMachine",.loginInfo,.exportType,.eventGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetDialyzer">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,dialyzerGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinDialyzer</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetDialyzer").Invoke($this,"http://tempuri.org/GetDialyzer",.loginInfo,.dialyzerGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetDialyzerByCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,Code:%String,idProduct:%xsd.int(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinDialyzer</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetDialyzerByCode").Invoke($this,"http://tempuri.org/GetDialyzerByCode",.loginInfo,.Code,.idProduct)
+]]></Implementation>
+</Method>
+
+<Method name="GetDistinctUsers">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,getDisabled:%Boolean(REQUIRED=1),filterUserName:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.GetDistinctUsersResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetDistinctUsers").Invoke($this,"http://tempuri.org/GetDistinctUsers",.loginInfo,.getDisabled,.filterUserName)
+]]></Implementation>
+</Method>
+
+<Method name="GetDrugInfo">
+<Final>1</Final>
+<FormalSpec>eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),medicinalProduct:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinDrugInfo</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetDrugInfo").Invoke($this,"http://tempuri.org/GetDrugInfo",.eventGuid,.medicinalProduct)
+]]></Implementation>
+</Method>
+
+<Method name="GetDrugInfoEx">
+<Final>1</Final>
+<FormalSpec>eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),medicinalProduct:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinDrugInfoEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetDrugInfoEx").Invoke($this,"http://tempuri.org/GetDrugInfoEx",.eventGuid,.medicinalProduct)
+]]></Implementation>
+</Method>
+
+<Method name="GetDrugInfoEx2">
+<Final>1</Final>
+<FormalSpec>eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),medicinalProduct:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinDrugInfoEx2</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetDrugInfoEx2").Invoke($this,"http://tempuri.org/GetDrugInfoEx2",.eventGuid,.medicinalProduct)
+]]></Implementation>
+</Method>
+
+<Method name="GetEcon5ClinicsInPeriod">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,dt:%TimeStamp(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinClinic",XMLITEMNAME="ThinClinic",XMLNAME="GetEcon5ClinicsInPeriodResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetEcon5ClinicsInPeriod").Invoke($this,"http://tempuri.org/GetEcon5ClinicsInPeriod",.loginInfo,.exportType,.dt)
+]]></Implementation>
+</Method>
+
+<Method name="GetEsaoteStudyUIDNotExist">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,valuesToCheck:%ListOfObjects(ELEMENTTYPE="FME.WS.DataExchange.tns.ThinSingleValue",XMLITEMNAME="ThinSingleValue",XMLNAME="valuesToCheck")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinSingleValue",XMLITEMNAME="ThinSingleValue",XMLNAME="GetEsaoteStudyUIDNotExistResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetEsaoteStudyUIDNotExist").Invoke($this,"http://tempuri.org/GetEsaoteStudyUIDNotExist",.loginInfo,.exportType,.valuesToCheck)
+]]></Implementation>
+</Method>
+
+<Method name="GetEventPromptChangedBy">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,promptName:%String,eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),date:%TimeStamp(REQUIRED=1),valueIdx:%xsd.int(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinEuclidUser</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetEventPromptChangedBy").Invoke($this,"http://tempuri.org/GetEventPromptChangedBy",.loginInfo,.promptName,.eventGuid,.date,.valueIdx)
+]]></Implementation>
+</Method>
+
+<Method name="GetHierarchicalEntity">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,entitytype:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.GetHierarchicalEntityResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetHierarchicalEntity").Invoke($this,"http://tempuri.org/GetHierarchicalEntity",.loginInfo,.entitytype)
+]]></Implementation>
+</Method>
+
+<Method name="GetHierarchyByUser">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinHierarchy",XMLITEMNAME="ThinHierarchy",XMLNAME="GetHierarchyByUserResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetHierarchyByUser").Invoke($this,"http://tempuri.org/GetHierarchyByUser",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetICD">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,ICDGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinICD</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetICD").Invoke($this,"http://tempuri.org/GetICD",.loginInfo,.ICDGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetKWItemsByPrompt">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,kwPrompt:FME.WS.DataExchange.tns.ThinPromptInfo</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinKWItem",XMLITEMNAME="ThinKWItem",XMLNAME="GetKWItemsByPromptResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetKWItemsByPrompt").Invoke($this,"http://tempuri.org/GetKWItemsByPrompt",.loginInfo,.kwPrompt)
+]]></Implementation>
+</Method>
+
+<Method name="GetLastEvent">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),patientGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),date:%TimeStamp(REQUIRED=1),idTaskType:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetLastEvent").Invoke($this,"http://tempuri.org/GetLastEvent",.loginInfo,.promptList,.patientGuid,.date,.idTaskType)
+]]></Implementation>
+</Method>
+
+<Method name="GetLastEventOnSamplingDay">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),patientGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),date:%TimeStamp(REQUIRED=1),idTaskType:%String,SamplingDay:%xsd.int(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetLastEventOnSamplingDay").Invoke($this,"http://tempuri.org/GetLastEventOnSamplingDay",.loginInfo,.promptList,.patientGuid,.date,.idTaskType,.SamplingDay)
+]]></Implementation>
+</Method>
+
+<Method name="GetLastEventValue">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,patientGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),date:%TimeStamp(REQUIRED=1),idTaskType:%String,promptName:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetLastEventValue").Invoke($this,"http://tempuri.org/GetLastEventValue",.loginInfo,.patientGuid,.date,.idTaskType,.promptName)
+]]></Implementation>
+</Method>
+
+<Method name="GetMachineData">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,eventGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinMachineData</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetMachineData").Invoke($this,"http://tempuri.org/GetMachineData",.loginInfo,.exportType,.eventGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetMachineInfo">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,machineGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinMachineInfo</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetMachineInfo").Invoke($this,"http://tempuri.org/GetMachineInfo",.loginInfo,.machineGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetNeedle">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,needleGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinNeedle</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetNeedle").Invoke($this,"http://tempuri.org/GetNeedle",.loginInfo,.needleGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetNeedleByCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,Code:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinNeedle</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetNeedleByCode").Invoke($this,"http://tempuri.org/GetNeedleByCode",.loginInfo,.Code)
+]]></Implementation>
+</Method>
+
+<Method name="GetPatientAdmission">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),patientGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetPatientAdmission").Invoke($this,"http://tempuri.org/GetPatientAdmission",.loginInfo,.promptList,.patientGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetPatientAdmissionByCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),patientCode:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinExportEventResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetPatientAdmissionByCode").Invoke($this,"http://tempuri.org/GetPatientAdmissionByCode",.loginInfo,.exportType,.promptList,.patientCode)
+]]></Implementation>
+</Method>
+
+<Method name="GetPatientsByClinic">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.GetPatientsByClinicResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetPatientsByClinic").Invoke($this,"http://tempuri.org/GetPatientsByClinic",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetPatientsByClinicCode">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,patientStatusCodes:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="patientStatusCodes"),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),ClinicCode:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinExportEventResult",XMLITEMNAME="ThinExportEventResult",XMLNAME="GetPatientsByClinicCodeResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetPatientsByClinicCode").Invoke($this,"http://tempuri.org/GetPatientsByClinicCode",.loginInfo,.exportType,.patientStatusCodes,.promptList,.ClinicCode)
+]]></Implementation>
+</Method>
+
+<Method name="GetPatientsByClinicCodeDT">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,patientStatusCodes:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="patientStatusCodes"),promptList:%ListOfDataTypes(ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="promptList"),ClinicCode:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.GetPatientsByClinicCodeDTResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetPatientsByClinicCodeDT").Invoke($this,"http://tempuri.org/GetPatientsByClinicCodeDT",.loginInfo,.exportType,.patientStatusCodes,.promptList,.ClinicCode)
+]]></Implementation>
+</Method>
+
+<Method name="GetPromptListByTaskModel">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,idTaskType:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinPromptInfo",XMLITEMNAME="ThinPromptInfo",XMLNAME="GetPromptListByTaskModelResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetPromptListByTaskModel").Invoke($this,"http://tempuri.org/GetPromptListByTaskModel",.loginInfo,.idTaskType)
+]]></Implementation>
+</Method>
+
+<Method name="GetRequestQueue">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinQueue</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetRequestQueue").Invoke($this,"http://tempuri.org/GetRequestQueue",.loginInfo,.exportType)
+]]></Implementation>
+</Method>
+
+<Method name="GetRequestQueueByStatus">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,status:%ListOfDataTypes(ELEMENTTYPE="FME.WS.DataExchange.tns.RequestState",XMLITEMNAME="RequestState",XMLNAME="status")</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinQueue</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetRequestQueueByStatus").Invoke($this,"http://tempuri.org/GetRequestQueueByStatus",.loginInfo,.exportType,.status)
+]]></Implementation>
+</Method>
+
+<Method name="GetRequestQueueByStatusAndType">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,status:%ListOfDataTypes(ELEMENTTYPE="FME.WS.DataExchange.tns.RequestState",XMLITEMNAME="RequestState",XMLNAME="status"),type:FME.WS.DataExchange.tns.RequestType(REQUIRED=1),filterExpression:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinQueue</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetRequestQueueByStatusAndType").Invoke($this,"http://tempuri.org/GetRequestQueueByStatusAndType",.loginInfo,.exportType,.status,.type,.filterExpression)
+]]></Implementation>
+</Method>
+
+<Method name="GetResource">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,ResourceGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinResource</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetResource").Invoke($this,"http://tempuri.org/GetResource",.loginInfo,.ResourceGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetSKWItemsByFamily">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,skwPrompt:FME.WS.DataExchange.tns.ThinPromptInfo</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinSKWItem",XMLITEMNAME="ThinSKWItem",XMLNAME="GetSKWItemsByFamilyResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetSKWItemsByFamily").Invoke($this,"http://tempuri.org/GetSKWItemsByFamily",.loginInfo,.skwPrompt)
+]]></Implementation>
+</Method>
+
+<Method name="GetSaveHistory">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,VBManagerGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinSaveHistory</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetSaveHistory").Invoke($this,"http://tempuri.org/GetSaveHistory",.loginInfo,.exportType,.VBManagerGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetTaskModelsList">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfDataTypes</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="%String",XMLITEMNAME="string",XMLNAME="GetTaskModelsListResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetTaskModelsList").Invoke($this,"http://tempuri.org/GetTaskModelsList",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="GetTaskPromptChangedBy">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,promptName:%String,taskGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1),date:%TimeStamp(REQUIRED=1),valueIdx:%xsd.int(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinEuclidUser</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetTaskPromptChangedBy").Invoke($this,"http://tempuri.org/GetTaskPromptChangedBy",.loginInfo,.promptName,.taskGuid,.date,.valueIdx)
+]]></Implementation>
+</Method>
+
+<Method name="GetUserInfo">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,userGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinEuclidUser</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetUserInfo").Invoke($this,"http://tempuri.org/GetUserInfo",.loginInfo,.userGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetUserInfoEx">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,userGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinEuclidUserEx</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetUserInfoEx").Invoke($this,"http://tempuri.org/GetUserInfoEx",.loginInfo,.userGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetUsers">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,getDisabled:%Boolean(REQUIRED=1),filterUserName:%String</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.GetUsersResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetUsers").Invoke($this,"http://tempuri.org/GetUsers",.loginInfo,.getDisabled,.filterUserName)
+]]></Implementation>
+</Method>
+
+<Method name="GetUsersInfoByClinic">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,userGuid:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%ListOfObjects</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>ELEMENTTYPE="FME.WS.DataExchange.tns.ThinEuclidUser",CLASSNAME=1,XMLITEMNAME="ThinEuclidUser",XMLNAME="GetUsersInfoByClinicResult"</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("GetUsersInfoByClinic").Invoke($this,"http://tempuri.org/GetUsersInfoByClinic",.loginInfo,.userGuid)
+]]></Implementation>
+</Method>
+
+<Method name="GetWSVersion">
+<Final>1</Final>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.WSVersion</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("GetWSVersion").Invoke($this,"http://tempuri.org/GetWSVersion")
+]]></Implementation>
+</Method>
+
+<Method name="InsertQueue">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,thinQueue:FME.WS.DataExchange.tns.ThinQueue</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinQueueResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("InsertQueue").Invoke($this,"http://tempuri.org/InsertQueue",.loginInfo,.exportType,.thinQueue)
+]]></Implementation>
+</Method>
+
+<Method name="Login">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinLoginResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<ReturnTypeParams>CLASSNAME=1</ReturnTypeParams>
+<Implementation><![CDATA[ Quit ..WebMethod("Login").Invoke($this,"http://tempuri.org/Login",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="LoginWithToken">
+<Final>1</Final>
+<FormalSpec>token:FME.WS.DataExchange.s1.guid(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%Boolean</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("LoginWithToken").Invoke($this,"http://tempuri.org/LoginWithToken",.token)
+]]></Implementation>
+</Method>
+
+<Method name="ResetCachePatient">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%Integer</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("ResetCachePatient").Invoke($this,"http://tempuri.org/ResetCachePatient",.loginInfo)
+]]></Implementation>
+</Method>
+
+<Method name="UpdateQueueStatus">
+<Final>1</Final>
+<FormalSpec>loginInfo:FME.WS.DataExchange.tns.ThinLogin,exportType:FME.WS.DataExchange.tns.ThinImportType,ID:FME.WS.DataExchange.s1.guid(REQUIRED=1),newState:FME.WS.DataExchange.tns.RequestState(REQUIRED=1)</FormalSpec>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinQueueResult</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("UpdateQueueStatus").Invoke($this,"http://tempuri.org/UpdateQueueStatus",.loginInfo,.exportType,.ID,.newState)
+]]></Implementation>
+</Method>
+
+<Method name="drugImportstructure">
+<Final>1</Final>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>FME.WS.DataExchange.tns.ThinImportDrug</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("drugImportstructure").Invoke($this,"http://tempuri.org/drugImportstructure")
+]]></Implementation>
+</Method>
+
+<Method name="ping">
+<Final>1</Final>
+<ProcedureBlock>1</ProcedureBlock>
+<ReturnType>%String</ReturnType>
+<WebMethod>1</WebMethod>
+<SoapBindingStyle>document</SoapBindingStyle>
+<SoapBodyUse>literal</SoapBodyUse>
+<Implementation><![CDATA[ Quit ..WebMethod("ping").Invoke($this,"http://tempuri.org/ping")
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Document name="EnsExportNotes.EnsExportProduction_2021-06-14 17-47-11_761+2.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportProduction_2021-06-14 17-47-11_761+2" description="Export Notes for export EnsExportProduction_2021-06-14 17-47-11_761+2">
+<![CDATA[<Deployment>
+<Creation>
+<Machine>LOCALHOST</Machine>
+<Instance>FMEIRIS</Instance>
+<Namespace>FMEFHIRV2</Namespace>
+<SourceProduction>FMEFHIRPKG.FoundationProduction</SourceProduction>
+<Username>wmahmoudi</Username>
+<UTC>2021-06-14 15:49:34.392</UTC>
+</Creation>
+<Notes>
+</Notes>
+<Contents>
+<ExportProject>EnsExportProduction_2021-06-14 17-47-11_761+2</ExportProject>
+<Item num="1">FME.WS.DataExchange.DataExchangeSoap.CLS</Item>
+</Contents>
+<ProductionClassInExport></ProductionClassInExport>
+</Deployment>
+
+]]></ProjectTextDocument>
+</Document></Export>

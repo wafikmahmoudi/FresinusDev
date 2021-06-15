@@ -1,0 +1,1653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for UNIX (Ubuntu Server LTS for x86-64) 2020.2 (Build 199U)" ts="2021-04-12 14:43:27">
+<Project name="EnsExportItem_2021-04-12 14-42-56_675+2" LastModified="2021-04-12 14:43:27.370818">
+  <ProjectDescription>Studio Project generated starting from Production Configuration Item 'FMEFHIRPKG.FoundationProduction : RouteurDest' at 2021-04-12 12:42:56.675 UTC</ProjectDescription>
+  <Items>
+    <ProjectItem name="FMEFHIRPKG.RouteurDestRoutingRule" type="CLS"></ProjectItem>
+    <ProjectItem name="FMEFHIRPKG.RoutingEnginetest1RoutingRule" type="CLS"></ProjectItem>
+    <ProjectItem name="HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafik" type="CLS"></ProjectItem>
+    <ProjectItem name="HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafikversion2" type="CLS"></ProjectItem>
+    <ProjectItem name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Address" type="CLS"></ProjectItem>
+    <ProjectItem name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV1wafik" type="CLS"></ProjectItem>
+    <ProjectItem name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV2" type="CLS"></ProjectItem>
+    <ProjectItem name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.PatientToPIDwafik" type="CLS"></ProjectItem>
+    <ProjectItem name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.PatientToPIDwafikversion2" type="CLS"></ProjectItem>
+    <ProjectItem name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone" type="CLS"></ProjectItem>
+    <ProjectItem name="TransformationADT.ADTAdmissionPatient" type="CLS"></ProjectItem>
+    <ProjectItem name="TransformationADT.ADTcreationPatient" type="CLS"></ProjectItem>
+    <ProjectItem name="Settings:HL7.ADT.FMEToLIFEN.SFTP.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:RouteurDest.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:RoutingEnginetest1.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportItem_2021-04-12 14-42-56_675+2.PTD" type="PTD"></ProjectItem>
+  </Items>
+</Project>
+
+
+<Class name="FMEFHIRPKG.RouteurDestRoutingRule">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>65828,51176.755061</TimeChanged>
+<TimeCreated>65804,55905.410065</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>EnsLib.MsgRouter.RuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="EnsLib.MsgRouter.RoutingEngine" production="FMEFHIRPKG.FoundationProduction">
+<ruleSet name="" effectiveBegin="" effectiveEnd="">
+<rule name="">
+<constraint name="source" value="RoutingEnginetest1"></constraint>
+<when condition="Document.Name DoesNotContain &quot;ZNot&quot;">
+<send transform="" target="HL7.ADT.FMEToLIFEN.SFTP,HL7.ADT.FMEToLIFEN.PROD.SFTP"></send>
+<return></return>
+</when>
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="FMEFHIRPKG.RoutingEnginetest1RoutingRule">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>65828,51155.39528</TimeChanged>
+<TimeCreated>65721,47769.331688</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>EnsLib.MsgRouter.RuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="EnsLib.MsgRouter.RoutingEngine" production="FMEFHIRPKG.FoundationProduction">
+<ruleSet name="" effectiveBegin="" effectiveEnd="">
+<rule name="">
+<constraint name="source" value="FME.BP.GetPatientByClinicCodeBPL"></constraint>
+<when condition="1">
+<send transform="HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafik,TransformationADT.ADTAdmissionPatient" target="RouteurDest"></send>
+<send transform="HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafikversion2,TransformationADT.ADTAdmissionPatient" target="testsortieHL72version2"></send>
+<return></return>
+</when>
+</rule>
+<rule name="" disabled="false">
+<constraint name="source" value="FME.BP.GetPatientData"></constraint>
+<when condition="1">
+<send transform="HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafik,TransformationADT.ADTcreationPatient" target="HL7.ADT.FMEToLIFEN.SFTP,HL7.ADT.FMEToLIFEN.PROD.SFTP"></send>
+<return></return>
+</when>
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafik">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65786,54324.207919</TimeChanged>
+<TimeCreated>65721,48567.891088</TimeCreated>
+<DependsOn>EnsLib.EDI.XML.Document,EnsLib.HL7.Message</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.EDI.XML.Document' targetClass='EnsLib.HL7.Message' sourceDocType='schemaxsd:Container' targetDocType='2.5.1:ADT_A01' create='new' language='objectscript' >
+<code>
+<![CDATA[ 
+ #;
+ #; MSH  
+ #; 
+]]]]><![CDATA[></code>
+<assign value='"|"' property='target.{MSH:1}' action='set' />
+<assign value='"^~\&amp;"' property='target.{MSH:2}' action='set' />
+<assign value='source.{SendingFacility}' property='tFacilityName' action='set' />
+<assign value='source.{Patient}' property='txx' action='set' />
+<assign value='tFacilityName' property='target.{MSH:4.1}' action='set' disabled='1' />
+<assign value='..Lookup("FacilityNameToNISTID",target.{MSH:4.1})' property='target.{MSH:4.2}' action='set' disabled='1' />
+<assign value='"NPI"' property='target.{MSH:SendingFacility}' action='set' />
+<assign value='tFacilityName' property='target.{MSH:SendingApplication.NamespaceID}' action='set' disabled='1' />
+<assign value='..Lookup("FacilityNameToNISTID",target.{MSH:4.1})' property='target.{MSH:SendingApplication.UniversalID}' action='set' disabled='1' />
+<assign value='"NPI"' property='target.{MSH:SendingApplication}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).DateTime()' property='target.{MSH:7}' action='set' />
+<assign value='source.{EventDescription}' property='tEventDesc' action='set' />
+<assign value='$Translate($Extract(tEventDesc,1,7),"_","^")_"^"_$Translate(target.GetSegmentAt("MSH").Unescape($Extract(tEventDesc,9,*)),"^","_")' property='target.{MSH:9}' action='set' />
+<assign value='$ZTS' property='temp1' action='set' />
+<assign value='$REPLACE($REPLACE(temp1,",",""),".","")' property='target.{MSH:10}' action='set' />
+<assign value='"P"' property='target.{MSH:11}' action='set' />
+<assign value='"2.5.1"' property='target.{MSH:12}' action='set' />
+<assign value='"AL"' property='target.{MSH:15}' action='set' />
+<assign value='"AL"' property='target.{MSH:16}' action='set' />
+<assign value='"PH_SS-Ack^SS Sender^2.16.840.1.114222.4.10.3^ISO"' property='target.{MSH:21}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; EVN
+ #; 
+]]]]><![CDATA[></code>
+<assign value='target.{MSH:4}' property='target.{EVN:EventFacility}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).DateTime(,1)' property='target.{EVN:RecordedDateTime}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; PID
+ #; 
+]]]]><![CDATA[></code>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Patient&gt;"_source.{Patient}_"&lt;/Patient&gt;")' property='tPatient' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.PatientToPIDwafik' targetObj='target.{PID}' sourceObj='tPatient' />
+<assign value='"NPI"' property='target.{PID:PatientIdentifierList(1).AssigningAuthority}' action='set' />
+<foreach property='target.{PID:3()}' key='k1' >
+<annotation>Change MRN to MR</annotation>
+<if condition='target.{PID:3(k1).5}="MRN"' >
+<true>
+<assign value='"MR"' property='target.{PID:3(k1).5}' action='set' disabled='1' />
+</true>
+</if>
+</foreach>
+<if condition='target.{PID:30}="N"' >
+<true>
+<assign value='""' property='target.{PID:30}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; All this is just removing un-used parts to make comparisons easier
+ #; Not strictly necessary
+]]]]><![CDATA[></code>
+<assign value='""' property='target.{PID:15}' action='set' disabled='1' />
+<assign value='""' property='target.{PID:16}' action='set' disabled='1' />
+<assign value='""' property='target.{PID:17}' action='set' disabled='1' />
+<if condition='$Length(target.{PID:22})' >
+<true>
+<assign value='target.{PID:22}' property='target.{PID:33}' action='set' />
+<assign value='""' property='target.{PID:22}' action='set' />
+<assign value='target.{PID:33.1}' property='target.{PID:22.1}' action='set' />
+<assign value='target.{PID:33.2}' property='target.{PID:22.2}' action='set' />
+<assign value='target.{PID:33.3}' property='target.{PID:22.3}' action='set' />
+</true>
+</if>
+<assign value='$Extract(target.{PID:29},1,12)' property='target.{PID:29}' action='set' />
+<assign value='""' property='target.{PID:33}' action='set' />
+<assign value='""' property='target.{PID:34}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; PV1/PV2
+ #; 
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{Encounter})' >
+<true>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Encounter&gt;"_source.{Encounter}_"&lt;/Encounter&gt;")' property='tEncounter' action='set' />
+<code>
+<![CDATA[ $$$LOGINFO("tEncounter : "_tEncounter)]]]]><![CDATA[></code>
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV1wafik' targetObj='target.{PV1}' sourceObj='tEncounter' />
+<code>
+<![CDATA[ 
+ #;
+ #; PV2
+ #; 
+]]]]><![CDATA[></code>
+<assign value='$Extract(target.{PV1:44},1,12)' property='target.{PV1:44}' action='set' >
+<annotation>Strictly not necessary just for comparison reasons</annotation>
+</assign>
+<if condition='+$Length(source.{Encounter.Code})' >
+<true>
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV2' targetObj='target.{PV2}' sourceObj='tEncounter' />
+</true>
+</if>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; DG1
+ #; 
+]]]]><![CDATA[></code>
+<foreach property='source.{Diagnosis()}' key='k1' >
+<assign value='k1' property='target.{DG1(k1):SetIDDG1}' action='set' />
+<assign value='source.{Diagnosis(k1).Diagnosis.Code}' property='target.{DG1(k1):DiagnosisCodeDG1.Identifier}' action='set' />
+<assign value='""' property='target.{DG1(k1):DiagnosisCodeDG1.Text}' action='set' />
+<assign value='""' property='target.{DG1(k1):DiagnosisCodeDG1.NameofCodingSystem}' action='set' />
+<assign value='""' property='target.{DG1(k1):DiagnosisType}' action='set' />
+</foreach>
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafikversion2">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65792,60839.594568</TimeChanged>
+<TimeCreated>65792,52567.13524</TimeCreated>
+<DependsOn>EnsLib.EDI.XML.Document,EnsLib.HL7.Message</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.EDI.XML.Document' targetClass='EnsLib.HL7.Message' sourceDocType='schemaxsd:Container' targetDocType='2.5.1:ADT_A01' create='new' language='objectscript' >
+<code>
+<![CDATA[ 
+ #;
+ #; MSH  
+ #; 
+]]]]><![CDATA[></code>
+<assign value='"|"' property='target.{MSH:1}' action='set' />
+<assign value='"^~\&amp;"' property='target.{MSH:2}' action='set' />
+<assign value='source.{SendingFacility}' property='tFacilityName' action='set' />
+<assign value='source.{Patient}' property='txx' action='set' />
+<assign value='tFacilityName' property='target.{MSH:4.1}' action='set' disabled='1' />
+<assign value='..Lookup("FacilityNameToNISTID",target.{MSH:4.1})' property='target.{MSH:4.2}' action='set' disabled='1' />
+<assign value='"NPI"' property='target.{MSH:SendingFacility}' action='set' />
+<assign value='tFacilityName' property='target.{MSH:SendingApplication.NamespaceID}' action='set' disabled='1' />
+<assign value='..Lookup("FacilityNameToNISTID",target.{MSH:4.1})' property='target.{MSH:SendingApplication.UniversalID}' action='set' disabled='1' />
+<assign value='"NPI"' property='target.{MSH:SendingApplication}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).DateTime()' property='target.{MSH:7}' action='set' />
+<assign value='source.{EventDescription}' property='tEventDesc' action='set' />
+<assign value='$Translate($Extract(tEventDesc,1,7),"_","^")_"^"_$Translate(target.GetSegmentAt("MSH").Unescape($Extract(tEventDesc,9,*)),"^","_")' property='target.{MSH:9}' action='set' />
+<assign value='$ZTS' property='temp1' action='set' />
+<assign value='$REPLACE($REPLACE(temp1,",",""),".","")' property='target.{MSH:10}' action='set' />
+<assign value='"P"' property='target.{MSH:11}' action='set' />
+<assign value='"2.5.1"' property='target.{MSH:12}' action='set' />
+<assign value='"AL"' property='target.{MSH:15}' action='set' />
+<assign value='"AL"' property='target.{MSH:16}' action='set' />
+<assign value='"PH_SS-Ack^SS Sender^2.16.840.1.114222.4.10.3^ISO"' property='target.{MSH:21}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; EVN
+ #; 
+]]]]><![CDATA[></code>
+<assign value='target.{MSH:4}' property='target.{EVN:EventFacility}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).DateTime(,1)' property='target.{EVN:RecordedDateTime}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; PID
+ #; 
+]]]]><![CDATA[></code>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Patient&gt;"_source.{Patient}_"&lt;/Patient&gt;")' property='tPatient' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.PatientToPIDwafikversion2' targetObj='target.{PID}' sourceObj='tPatient' />
+<foreach property='target.{PID:3()}' key='k1' >
+<annotation>Change MRN to MR</annotation>
+<if condition='target.{PID:3(k1).5}="MRN"' >
+<true>
+<assign value='"MR"' property='target.{PID:3(k1).5}' action='set' disabled='1' />
+</true>
+</if>
+</foreach>
+<if condition='target.{PID:30}="N"' >
+<true>
+<assign value='""' property='target.{PID:30}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; All this is just removing un-used parts to make comparisons easier
+ #; Not strictly necessary
+]]]]><![CDATA[></code>
+<assign value='""' property='target.{PID:15}' action='set' disabled='1' />
+<assign value='""' property='target.{PID:16}' action='set' disabled='1' />
+<assign value='""' property='target.{PID:17}' action='set' disabled='1' />
+<if condition='$Length(target.{PID:22})' >
+<true>
+<assign value='target.{PID:22}' property='target.{PID:33}' action='set' />
+<assign value='""' property='target.{PID:22}' action='set' />
+<assign value='target.{PID:33.1}' property='target.{PID:22.1}' action='set' />
+<assign value='target.{PID:33.2}' property='target.{PID:22.2}' action='set' />
+<assign value='target.{PID:33.3}' property='target.{PID:22.3}' action='set' />
+</true>
+</if>
+<assign value='$Extract(target.{PID:29},1,12)' property='target.{PID:29}' action='set' />
+<assign value='""' property='target.{PID:33}' action='set' />
+<assign value='""' property='target.{PID:34}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; PV1/PV2
+ #; 
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{Encounter})' >
+<true>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Encounter&gt;"_source.{Encounter}_"&lt;/Encounter&gt;")' property='tEncounter' action='set' />
+<code>
+<![CDATA[ $$$LOGINFO("tEncounter : "_tEncounter)]]]]><![CDATA[></code>
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV1wafik' targetObj='target.{PV1}' sourceObj='tEncounter' />
+<code>
+<![CDATA[ 
+ #;
+ #; PV2
+ #; 
+]]]]><![CDATA[></code>
+<assign value='$Extract(target.{PV1:44},1,12)' property='target.{PV1:44}' action='set' >
+<annotation>Strictly not necessary just for comparison reasons</annotation>
+</assign>
+<if condition='+$Length(source.{Encounter.Code})' >
+<true>
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV2' targetObj='target.{PV2}' sourceObj='tEncounter' />
+</true>
+</if>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; DG1
+ #; 
+]]]]><![CDATA[></code>
+<foreach property='source.{Diagnosis()}' key='k1' >
+<assign value='k1' property='target.{DG1(k1):SetIDDG1}' action='set' />
+<assign value='source.{Diagnosis(k1).Diagnosis.Code}' property='target.{DG1(k1):DiagnosisCodeDG1.Identifier}' action='set' />
+<assign value='""' property='target.{DG1(k1):DiagnosisCodeDG1.Text}' action='set' />
+<assign value='""' property='target.{DG1(k1):DiagnosisCodeDG1.NameofCodingSystem}' action='set' />
+<assign value='""' property='target.{DG1(k1):DiagnosisType}' action='set' />
+</foreach>
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Address">
+<Description>
+/ Name Item Transform to XPN</Description>
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65665,24826.247346</TimeChanged>
+<TimeCreated>65665,24826.247346</TimeCreated>
+<DependsOn>EnsLib.EDI.XML.Document,EnsLib.HL7.Segment</DependsOn>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.EDI.XML.Document' targetClass='EnsLib.HL7.Segment' sourceDocType='HS.SDA3:Address' targetDocType='2.5.1:XAD' create='new' language='objectscript' >
+<if condition='+$Length(..ReplaceStr($ZStrip(source.{/Address/Street},"*W"),";;",""))||(+source.{/Address/Zip/Code})' >
+<true>
+<assign value='$Piece(source.{/Address/Street},";")' property='target.{0.1}' action='set' />
+<assign value='$ZStrip($Piece(source.{/Address/Street},";",2),"&lt;&gt;W")' property='target.{0.2}' action='set' />
+<assign value='source.{/Address/City/Code}' property='target.{0.3}' action='set' />
+<assign value='source.{/Address/State/Code}' property='target.{0.4}' action='set' />
+<assign value='source.{/Address/Zip/Code}' property='target.{0.5}' action='set' />
+<if condition='+$Length(source.{/Address/Country/Code})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Address/Country/Code}' property='target.{0.6}' action='set' />
+</true>
+</if>
+<if condition='+$Length(source.{/Address/County/Code})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Address/County/Code}' property='target.{0.9}' action='set' />
+</true>
+</if>
+
+</true>
+</if>
+</transform>
+]]></Data>
+</XData>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+</Class>
+
+
+<Class name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV1wafik">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65794,61252.641279</TimeChanged>
+<TimeCreated>65721,48580.702969</TimeCreated>
+<DependsOn>EnsLib.EDI.XML.Document,EnsLib.HL7.Segment</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.EDI.XML.Document' targetClass='EnsLib.HL7.Segment' sourceDocType='HS.SDA3:Encounter' targetDocType='2.5.1:PV1' create='new' language='objectscript' >
+<code>
+<![CDATA[ 
+ /*
+ Revision History:
+   2013-05-15 Paul Hula: Created
+ Documentation: 
+
+ */
+]]]]><![CDATA[></code>
+<code>
+<![CDATA[ 
+ #;
+ #; 1 2
+ #;
+]]]]><![CDATA[></code>
+<assign value='"1"' property='target.{1}' action='set' />
+<assign value='source.{/Encounter/EncounterType}' property='target.{2}' action='set' disabled='1' />
+<assign value='"I"' property='target.{2}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 4
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Encounter/AdmissionType/Code}' property='target.{4}' action='set' />
+<assign value='source.{/Encounter/AttendingClinicians/CareProvider/Name/FamilyName}' property='target.{7.2}' action='set' />
+<assign value='source.{/Encounter/AttendingClinicians/CareProvider/Name/GivenName}' property='target.{7.3}' action='set' />
+<assign value='source.{/Encounter/AttendingClinicians/CareProvider/Name/NameSuffix}' property='target.{7.5}' action='set' />
+<assign value='source.{/Encounter/ConsultingClinicians/CareProvider/Name/FamilyName}' property='target.{9.2}' action='set' />
+<assign value='source.{/Encounter/ConsultingClinicians/CareProvider/Name/GivenName}' property='target.{9.3}' action='set' />
+<assign value='source.{/Encounter/ConsultingClinicians/CareProvider/Name/NameSuffix}' property='target.{9.5}' action='set' />
+<assign value='source.{/Encounter/ReferringClinician/CareProvider/Name/FamilyName}' property='target.{8.2}' action='set' />
+<assign value='source.{/Encounter/ReferringClinician/CareProvider/Name/GivenName}' property='target.{8.3}' action='set' />
+<assign value='source.{/Encounter/ReferringClinician/CareProvider/Name/NameSuffix}' property='target.{8.5}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 19
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Encounter/EncounterNumber}' property='tEncounterNo' action='set' />
+<if condition='+$Length(tEncounterNo)' >
+<true>
+<if condition='$Length(tEncounterNo)&gt;15' >
+<true>
+<if condition='tEncounterNo["-"' >
+<true>
+<assign value='$Piece(tEncounterNo,"-")' property='tEncounterNo' action='set' />
+</true>
+<false>
+<assign value='$Extract(tEncounterNo,1,15)' property='tEncounterNo' action='set' />
+</false>
+</if>
+</true>
+</if>
+<assign value='tEncounterNo' property='target.{19.1}' action='set' />
+<assign value='source.{EnteredAt.Code}' property='target.{19.4.2}' action='set' />
+<assign value='source.{EnteredAt.Description}' property='target.{19.4.1}' action='set' />
+<assign value='source.{EnteredAt.SDACodingStandard}' property='target.{19.4.3}' action='set' />
+<assign value='"VN"' property='target.{19.5}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 36
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Encounter/SeparationMode/Code}' property='target.{36}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 44 For F(3)-SS_1_1.1
+ #; 44 45
+ #;
+]]]]><![CDATA[></code>
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).XMLTimeStampToDateTime(source.{/Encounter/FromTime})' property='target.{44}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).XMLTimeStampToDateTime(source.{/Encounter/ToTime})' property='target.{45}' action='set' />
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV2">
+<Description>
+J2 PJH - SDA3 Encounter to HL7 PV2 Sub Transform</Description>
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65665,24826.212795</TimeChanged>
+<TimeCreated>65665,24826.212795</TimeCreated>
+<DependsOn>EnsLib.EDI.XML.Document,EnsLib.HL7.Segment</DependsOn>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.EDI.XML.Document' targetClass='EnsLib.HL7.Segment' sourceDocType='HS.SDA3:Encounter' targetDocType='2.5.1:PV2' create='new' language='objectscript' >
+<code>
+<![CDATA[ 
+ /*
+ Revision History:
+   2013-05-15 Paul Hula: Created
+ Documentation: 
+
+ */
+]]]]><![CDATA[></code>
+<code>
+<![CDATA[ 
+ #;
+ #; 3
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Encounter/AdmitReason/Code}' property='target.{3.1}' action='set' />
+<assign value='source.{/Encounter/AdmitReason/Description}' property='target.{3.2}' action='set' />
+<assign value='source.{/Encounter/AdmitReason/SDACodingStandard}' property='target.{3.3}' action='set' />
+</transform>
+]]></Data>
+</XData>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+</Class>
+
+
+<Class name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.PatientToPIDwafik">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65783,56133.950157</TimeChanged>
+<TimeCreated>65749,49259.134766</TimeCreated>
+<DependsOn>EnsLib.EDI.XML.Document,EnsLib.HL7.Segment</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.EDI.XML.Document' targetClass='EnsLib.HL7.Segment' sourceDocType='HS.SDA3:Patient' targetDocType='2.5:PID' create='new' language='objectscript' >
+<assign value='1' property='target.{1}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; PID-3 - Patient Numbers
+ #;
+]]]]><![CDATA[></code>
+<assign value='0' property='tPID3Count' action='set' />
+<assign value='source.{/Patient/PatientNumbers/[1]/Number}' property='target.{PatientIdentifierList(1).IDNumber}' action='set' />
+<assign value='source.{/Patient/PatientNumbers/[1]/Organization/Code}' property='target.{PatientIdentifierList(1).AssigningAuthority.NamespaceID}' action='set' disabled='1' />
+<assign value='"PI"' property='target.{PatientIdentifierList(1).IdentifierTypeCode}' action='set' />
+<assign value='source.{/Patient/PatientNumbers/[1]/NumberType}' property='target.{3(tPID3Count).5}' action='set' disabled='1' />
+<if condition='source.{/Patient/PatientNumbers/[2]/NumberType} = "SSN"' >
+<true>
+<assign value='source.{/Patient/PatientNumbers/[2]/Number}' property='target.{19}' action='set' />
+</true>
+</if>
+<foreach property='source.{PatientNumbers()}' key='k1' >
+<if condition='source.{/Patient/PatientNumbers/["_k1_"]/NumberType}="SSN"' >
+<true>
+<assign value='source.{/Patient/PatientNumbers/["_k1_"]/Number}' property='target.{19}' action='set' disabled='1' />
+</true>
+<false>
+<assign value='tPID3Count+1' property='tPID3Count' action='set' />
+<assign value='source.{/Patient/PatientNumbers/["_k1_"]/Number}' property='target.{3(tPID3Count).1}' action='set' />
+<assign value='source.{/Patient/PatientNumbers/["_k1_"]/Organization/Code}' property='tPatNumberOrgCode' action='set' />
+<if condition='$Length(tPatNumberOrgCode)&lt;=20' >
+<true>
+<assign value='tPatNumberOrgCode' property='target.{3(tPID3Count).4.1}' action='set' disabled='1' />
+</true>
+<false>
+<if condition='tPatNumberOrgCode[" "' >
+<true>
+<assign value='$Piece(tPatNumberOrgCode," ",$Length(tPatNumberOrgCode," "))' property='target.{3(tPID3Count).4.1}' action='set' disabled='1' />
+</true>
+<false>
+<assign value='$Extract(tPatNumberOrgCode,1,20)' property='target.{3(tPID3Count).4.1}' action='set' disabled='1' />
+</false>
+</if>
+</false>
+</if>
+<assign value='source.{/Patient/PatientNumbers/["_k1_"]/Organization/UniversalId}' property='target.{3(tPID3Count).4.2}' action='set' disabled='1' />
+<if condition='target.{3(tPID3Count).4.2}=""' >
+<true>
+<assign value='##class(HS.Data.OIDMap).OIDForType(target.{3(k1).4.1},"AssigningAuthority")' property='target.{3(tPID3Count).4.2}' action='set' disabled='1' />
+</true>
+</if>
+<if condition='+$Length(target.{3(tPID3Count).4.1})' >
+<true>
+<assign value='"ISO"' property='target.{3(tPID3Count).4.3}' action='set' disabled='1' />
+</true>
+</if>
+<assign value='..Lookup("AAToFacilityOIDMap",target.{3(tPID3Count).4.2})' property='tFacilityOID' action='set' />
+<if condition='+$Length(tFacilityOID)' >
+<true>
+<assign value='##class(HS.Data.OIDMap).GetCodeForOID(tFacilityOID,"UnexpectedFacilityOIDLookUp")' property='target.{3(tPID3Count).6.1}' action='set' />
+<assign value='tFacilityOID' property='target.{3(tPID3Count).6.2}' action='set' />
+<assign value='"ISO"' property='target.{3(tPID3Count).6.3}' action='set' />
+</true>
+</if>
+</false>
+</if>
+</foreach>
+<code>
+<![CDATA[ 
+ #;<assign value='target.{3(tPID3Count).4}' property='target.{3(tPID3Count).6}' action='set' >
+#;<annotation>Just copying Assigning Authority to Assigning Facility TODO -- Make this look up driven
+#;a.) Check for Facility with same OID 
+#;b.) if missing look at cross map in ..Lookup
+#;c.) Finally default to just copying like it is now?
+#;</annotation>
+#;</assign>
+
+ #; 5 - Patient name
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/Name/FamilyName}' property='target.{5(1).1}' action='set' />
+<assign value='source.{/Patient/Name/GivenName}' property='target.{5(1).2}' action='set' />
+<assign value='source.{/Patient/Name/MiddleName}' property='target.{5(1).3}' action='set' />
+<assign value='source.{/Patient/Name/NameSuffix}' property='target.{5(1).4}' action='set' />
+<assign value='source.{/Patient/Name/NamePrefix}' property='target.{5(1).5}' action='set' />
+<if condition='$Length(source.{/Patient/Name/ProfessionalSuffix})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/Name/ProfessionalSuffix}' property='target.{5(1).14}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 5.7 - Patient name type
+ #;	s = Known but desire not to share
+ #; u = unknown
+]]]]><![CDATA[></code>
+<if condition='$Length(target.{5(1).1})' >
+<annotation>Defaulting to Legal type name as there is no way in the SDA to determine name type
+	Else use BlankNameReason 
+</annotation>
+<true>
+<assign value='"L"' property='target.{5(1).7}' action='set' />
+</true>
+<false>
+<assign value='source.{/Patient/BlankNameReason}' property='target.{5(2).7}' action='set' />
+</false>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 6 - Mothers Maiden Name
+ #;
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{/Patient/MothersFullName})' >
+<true>
+<assign value='source.{/Patient/MothersFullName/FamilyName}' property='target.{6(1).1}' action='set' />
+<assign value='source.{/Patient/MothersFullName/GivenName}' property='target.{6(1).2}' action='set' />
+<assign value='source.{/Patient/MothersFullName/MiddleName}' property='target.{6(1).3}' action='set' />
+<assign value='source.{/Patient/MothersFullName/NameSuffix}' property='target.{6(1).4}' action='set' />
+<assign value='source.{/Patient/MothersFullName/NamePrefix}' property='target.{6(1).5}' action='set' />
+<assign value='"M"' property='target.{6(1).7}' action='set' />
+<if condition='$Length(source.{/Patient/MothersFullName/ProfessionalSuffix})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/MothersFullName/ProfessionalSuffix}' property='target.{6(1).14}' action='set' />
+</true>
+</if>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 7 8
+ #;
+]]]]><![CDATA[></code>
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).XMLTimeStampToDate(source.{/Patient/BirthTime})' property='target.{7.1}' action='set' />
+<if condition='source.{/Patient/Gender/Code} = 1' >
+<true>
+<assign value='"F"' property='target.{8}' action='set' />
+</true>
+<false>
+<assign value='"M"' property='target.{8}' action='set' />
+</false>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 9
+ #;
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{Aliases})' >
+<true>
+<foreach property='source.{Aliases()}' key='k2' >
+<assign value='source.{/Patient/Aliases/["_k2_"]/FamilyName}' property='target.{9(k2).1}' action='set' />
+<assign value='source.{/Patient/Aliases/["_k2_"]/GivenName}' property='target.{9(k2).2}' action='set' />
+<assign value='source.{/Patient/Aliases/["_k2_"]/MiddleName}' property='target.{9(k2).3}' action='set' />
+<assign value='source.{/Patient/Aliases/["_k2_"]/NameSuffix}' property='target.{9(k2).4}' action='set' />
+</foreach>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 10 - Race
+ #; If Race was a CodeTableTranslated type property the lookups would not be necessary
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{/Patient/Race/Code})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/Race/Code}' property='target.{10(1).1}' action='set' />
+<assign value='source.{/Patient/Race/Description}' property='target.{10(1).2}' action='set' />
+<assign value='source.{/Patient/Race/SDACodingStandard}' property='target.{10(1).3}' action='set' />
+<assign value='source.{/Patient/Race/CodeSystemVersionId}' property='target.{10(1).7}' action='set' />
+<assign value='..Lookup("PriorRaceId",target.{10(1).1})' property='target.{10(1).4}' action='set' />
+<if condition='+$Length(target.{10(1).4})' >
+<annotation>If look up successful means we prior code of type L</annotation>
+<true>
+<assign value='"L"' property='target.{10(1).6}' action='set' />
+<assign value='"4"' property='target.{10(1).8}' action='set' />
+<assign value='..Lookup("PriorRaceName",target.{10(1).4})' property='target.{10(1).5}' action='set' />
+</true>
+</if>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 10 - Races
+ #; Add support for the multiple races in Races
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{Races})' >
+<true>
+<foreach property='source.{Races()}' key='k3' >
+<assign value='source.{/Patient/Races/["_k3_"]/Code}' property='target.{10(k3).1}' action='set' />
+<assign value='source.{/Patient/Races/["_k3_"]/Description}' property='target.{10(k3).2}' action='set' />
+<assign value='source.{/Patient/Races/["_k3_"]/SDACodingStandard}' property='target.{10(k3).3}' action='set' />
+<assign value='source.{/Patient/Races/["_k3_"]/CodeSystemVersionId}' property='target.{10(k3).7}' action='set' />
+<if condition='+$Length(target.{10(1).4})' >
+<annotation>If look up successful means we prior code of type L</annotation>
+<true>
+<assign value='"L"' property='target.{10(1).6}' action='set' />
+<assign value='"4"' property='target.{10(1).8}' action='set' />
+<assign value='..Lookup("PriorRaceName",target.{10(1).4})' property='target.{10(1).5}' action='set' />
+</true>
+</if>
+</foreach>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 11 - Addresses
+ #;
+]]]]><![CDATA[></code>
+<if condition='+source.{/Patient/Addresses/[*]}' >
+<true>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Address&gt;"_source.{/Patient/Addresses/[1]}_"&lt;/Address&gt;")' property='tAddress' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Address' targetObj='tSegment' sourceObj='tAddress' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='target.{11(1)}' action='set' />
+<foreach property='source.{Addresses()}' key='k1' disabled='1' >
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Address&gt;"_source.{/Patient/Addresses/["_k1_"]}_"&lt;/Address&gt;")' property='tAddress' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Address' targetObj='tSegment' sourceObj='tAddress' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='target.{11(k1)}' action='set' />
+</foreach>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 13 (1st Always Phone, 2nd Always Email)
+ #; <assign value='""' property='target.{13(1).2}' action='set' />
+]]]]><![CDATA[></code>
+<assign value='0' property='tPID13Count' action='set' />
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Phone&gt;"_source.{/Patient/ContactInfo/HomePhoneNumber}_"&lt;/Phone&gt;")' property='tPhone' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone' targetObj='tSegment' sourceObj='tPhone' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='tPhoneNumber' action='set' />
+<if condition='+$Length(tPhoneNumber)' >
+<true>
+<assign value='tPID13Count+1' property='tPID13Count' action='set' />
+<assign value='tPhoneNumber' property='target.{13(tPID13Count)}' action='set' disabled='1' />
+<assign value='"PRN"' property='target.{13(tPID13Count).2}' action='set' />
+<assign value='"PH"' property='target.{13(tPID13Count).3}' action='set' />
+</true>
+</if>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Phone&gt;"_source.{/Patient/ContactInfo/MobilePhoneNumber}_"&lt;/Phone&gt;")' property='tPhone' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone' targetObj='tSegment' sourceObj='tPhone' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='tPhoneNumber' action='set' />
+<assign value='source.{/Patient/ContactInfo/HomePhoneNumber}' property='target.{13(1)}' action='set' />
+<if condition='+$Length(tPhoneNumber)' >
+<true>
+<assign value='tPID13Count+1' property='tPID13Count' action='set' />
+<assign value='tPhoneNumber' property='target.{13(tPID13Count)}' action='set' />
+<assign value='"ORN"' property='target.{13(tPID13Count).2}' action='set' />
+<assign value='"CP"' property='target.{13(tPID13Count).3}' action='set' />
+</true>
+</if>
+<if condition='$Length(source.{/Patient/ContactInfo/EmailAddress})' >
+<true>
+<assign value='"NET"' property='target.{13(2).2}' action='set' />
+<assign value='"Internet"' property='target.{13(2).3}' action='set' />
+<assign value='source.{/Patient/ContactInfo/EmailAddress}' property='target.{13(2).4}' action='set' />
+<assign value='"home"' property='target.{13(2).9}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 14 - Business/Work phone
+ #;
+]]]]><![CDATA[></code>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Phone&gt;"_source.{/Patient/ContactInfo/WorkPhoneNumber}_"&lt;/Phone&gt;")' property='tPhone' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone' targetObj='tSegment' sourceObj='tPhone' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='tPhoneNumber' action='set' />
+<if condition='+$Length(tPhoneNumber)' >
+<true>
+<assign value='tPhoneNumber' property='target.{14(1)}' action='set' />
+<assign value='"WPN"' property='target.{14(1).2}' action='set' />
+<assign value='"PH"' property='target.{14(1).3}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 15 - Primary Language
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/PrimaryLanguage/Code}' property='target.{15.1}' action='set' />
+<assign value='source.{/Patient/PrimaryLanguage/Description}' property='target.{15.2}' action='set' />
+<assign value='source.{/Patient/PrimaryLanguage/SDACodingStandard}' property='target.{15.3}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 16 - Marital Status
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/MaritalStatus/Code}' property='target.{16.1}' action='set' />
+<assign value='source.{/Patient/MaritalStatus/Description}' property='target.{16.2}' action='set' />
+<assign value='source.{/Patient/MaritalStatus/SDACodingStandard}' property='target.{16.3}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 17 - Religion
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/Religion/Code}' property='target.{17.1}' action='set' />
+<assign value='source.{/Patient/Religion/Description}' property='target.{17.2}' action='set' />
+<assign value='source.{/Patient/Religion/SDACodingStandard}' property='target.{17.3}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 22 - Ethnic Group 
+ #; If EthnicGroup was a CodeTableTranslated type property the lookups would not be necessary
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{/Patient/EthnicGroup/Code})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/EthnicGroup/Code}' property='target.{22(1).1}' action='set' />
+<assign value='source.{/Patient/EthnicGroup/Description}' property='target.{22(1).2}' action='set' />
+<assign value='source.{/Patient/EthnicGroup/SDACodingStandard}' property='target.{22(1).3}' action='set' />
+<if condition='+$Length(source.{/Patient/EthnicGroup/CodeSystemVersionId})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/EthnicGroup/CodeSystemVersionId}' property='target.{22(1).7}' action='set' />
+</true>
+</if>
+<assign value='..Lookup("PriorEthnicGroupId",target.{22(1).1})' property='target.{22(1).4}' action='set' />
+<if condition='+$Length(target.{22(1).4})' >
+<annotation>If look up successful means we prior code of type L</annotation>
+<true>
+<assign value='"L"' property='target.{22(1).6}' action='set' />
+<assign value='"4"' property='target.{22(1).8}' action='set' />
+<assign value='..Lookup("PriorEthnicGroupName",target.{22(1).4})' property='target.{22(1).5}' action='set' />
+</true>
+</if>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 30
+ #;
+]]]]><![CDATA[></code>
+<if condition='+source.{/Patient/IsDead/}' >
+<true>
+<assign value='"Y"' property='target.{30}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).XMLTimeStampToDateTime(source.{/Patient/DeathTime/})' property='target.{29}' action='set' />
+</true>
+<false>
+<assign value='"N"' property='target.{30}' action='set' />
+</false>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 33 
+ #;
+]]]]><![CDATA[></code>
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).XMLTimeStampToDateTime(source.{/Patient/EnteredOn/})' property='target.{33}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 34
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/EnteredAt/Code}' property='target.{34.1}' action='set' />
+<if condition='+$Length(target.{34.1})' >
+<true>
+<assign value='##class(HS.Data.OIDMap).OIDForType(target.{34.1},"Facility")' property='target.{34.2}' action='set' />
+<assign value='"ISO"' property='target.{34.3}' action='set' />
+</true>
+</if>
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.PatientToPIDwafikversion2">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65792,60882.201229</TimeChanged>
+<TimeCreated>65792,60139.18343</TimeCreated>
+<DependsOn>EnsLib.EDI.XML.Document,EnsLib.HL7.Segment</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.EDI.XML.Document' targetClass='EnsLib.HL7.Segment' sourceDocType='HS.SDA3:Patient' targetDocType='2.5:PID' create='new' language='objectscript' >
+<assign value='1' property='target.{1}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; PID-3 - Patient Numbers
+ #;
+]]]]><![CDATA[></code>
+<assign value='0' property='tPID3Count' action='set' />
+<assign value='source.{/Patient/PatientNumbers/[1]/Number}' property='target.{PatientIdentifierList(1).IDNumber}' action='set' />
+<assign value='source.{/Patient/Organizations/DocumentOrganization/Organization/Code}' property='target.{PatientIdentifierList(1).AssigningAuthority}' action='set' />
+<assign value='source.{/Patient/PatientNumbers/[1]/Organization/Code}' property='target.{PatientIdentifierList(1).AssigningAuthority.NamespaceID}' action='set' disabled='1' />
+<assign value='"PI"' property='target.{PatientIdentifierList(1).IdentifierTypeCode}' action='set' />
+<assign value='source.{/Patient/PatientNumbers/[1]/NumberType}' property='target.{3(tPID3Count).5}' action='set' disabled='1' />
+<if condition='source.{/Patient/PatientNumbers/[2]/NumberType} = "SSN"' >
+<true>
+<assign value='source.{/Patient/PatientNumbers/[2]/Number}' property='target.{19}' action='set' />
+</true>
+</if>
+<foreach property='source.{PatientNumbers()}' key='k1' >
+<if condition='source.{/Patient/PatientNumbers/["_k1_"]/NumberType}="SSN"' >
+<true>
+<assign value='source.{/Patient/PatientNumbers/["_k1_"]/Number}' property='target.{19}' action='set' disabled='1' />
+</true>
+<false>
+<assign value='tPID3Count+1' property='tPID3Count' action='set' />
+<assign value='source.{/Patient/PatientNumbers/["_k1_"]/Number}' property='target.{3(tPID3Count).1}' action='set' />
+<assign value='source.{/Patient/PatientNumbers/["_k1_"]/Organization/Code}' property='tPatNumberOrgCode' action='set' />
+<if condition='$Length(tPatNumberOrgCode)&lt;=20' >
+<true>
+<assign value='tPatNumberOrgCode' property='target.{3(tPID3Count).4.1}' action='set' disabled='1' />
+</true>
+<false>
+<if condition='tPatNumberOrgCode[" "' >
+<true>
+<assign value='$Piece(tPatNumberOrgCode," ",$Length(tPatNumberOrgCode," "))' property='target.{3(tPID3Count).4.1}' action='set' disabled='1' />
+</true>
+<false>
+<assign value='$Extract(tPatNumberOrgCode,1,20)' property='target.{3(tPID3Count).4.1}' action='set' disabled='1' />
+</false>
+</if>
+</false>
+</if>
+<assign value='source.{/Patient/PatientNumbers/["_k1_"]/Organization/UniversalId}' property='target.{3(tPID3Count).4.2}' action='set' disabled='1' />
+<if condition='target.{3(tPID3Count).4.2}=""' >
+<true>
+<assign value='##class(HS.Data.OIDMap).OIDForType(target.{3(k1).4.1},"AssigningAuthority")' property='target.{3(tPID3Count).4.2}' action='set' disabled='1' />
+</true>
+</if>
+<if condition='+$Length(target.{3(tPID3Count).4.1})' >
+<true>
+<assign value='"ISO"' property='target.{3(tPID3Count).4.3}' action='set' disabled='1' />
+</true>
+</if>
+<assign value='..Lookup("AAToFacilityOIDMap",target.{3(tPID3Count).4.2})' property='tFacilityOID' action='set' />
+<if condition='+$Length(tFacilityOID)' >
+<true>
+<assign value='##class(HS.Data.OIDMap).GetCodeForOID(tFacilityOID,"UnexpectedFacilityOIDLookUp")' property='target.{3(tPID3Count).6.1}' action='set' />
+<assign value='tFacilityOID' property='target.{3(tPID3Count).6.2}' action='set' />
+<assign value='"ISO"' property='target.{3(tPID3Count).6.3}' action='set' />
+</true>
+</if>
+</false>
+</if>
+</foreach>
+<code>
+<![CDATA[ 
+ #;<assign value='target.{3(tPID3Count).4}' property='target.{3(tPID3Count).6}' action='set' >
+#;<annotation>Just copying Assigning Authority to Assigning Facility TODO -- Make this look up driven
+#;a.) Check for Facility with same OID 
+#;b.) if missing look at cross map in ..Lookup
+#;c.) Finally default to just copying like it is now?
+#;</annotation>
+#;</assign>
+
+ #; 5 - Patient name
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/Name/FamilyName}' property='target.{5(1).1}' action='set' />
+<assign value='source.{/Patient/Name/GivenName}' property='target.{5(1).2}' action='set' />
+<assign value='source.{/Patient/Name/MiddleName}' property='target.{5(1).3}' action='set' />
+<assign value='source.{/Patient/Name/NameSuffix}' property='target.{5(1).4}' action='set' />
+<assign value='source.{/Patient/Name/NamePrefix}' property='target.{5(1).5}' action='set' />
+<if condition='$Length(source.{/Patient/Name/ProfessionalSuffix})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/Name/ProfessionalSuffix}' property='target.{5(1).14}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 5.7 - Patient name type
+ #;	s = Known but desire not to share
+ #; u = unknown
+]]]]><![CDATA[></code>
+<if condition='$Length(target.{5(1).1})' >
+<annotation>Defaulting to Legal type name as there is no way in the SDA to determine name type
+	Else use BlankNameReason 
+</annotation>
+<true>
+<assign value='"L"' property='target.{5(1).7}' action='set' />
+</true>
+<false>
+<assign value='source.{/Patient/BlankNameReason}' property='target.{5(2).7}' action='set' />
+</false>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 6 - Mothers Maiden Name
+ #;
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{/Patient/MothersFullName})' >
+<true>
+<assign value='source.{/Patient/MothersFullName/FamilyName}' property='target.{6(1).1}' action='set' />
+<assign value='source.{/Patient/MothersFullName/GivenName}' property='target.{6(1).2}' action='set' />
+<assign value='source.{/Patient/MothersFullName/MiddleName}' property='target.{6(1).3}' action='set' />
+<assign value='source.{/Patient/MothersFullName/NameSuffix}' property='target.{6(1).4}' action='set' />
+<assign value='source.{/Patient/MothersFullName/NamePrefix}' property='target.{6(1).5}' action='set' />
+<assign value='"M"' property='target.{6(1).7}' action='set' />
+<if condition='$Length(source.{/Patient/MothersFullName/ProfessionalSuffix})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/MothersFullName/ProfessionalSuffix}' property='target.{6(1).14}' action='set' />
+</true>
+</if>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 7 8
+ #;
+]]]]><![CDATA[></code>
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).XMLTimeStampToDate(source.{/Patient/BirthTime})' property='target.{7.1}' action='set' />
+<if condition='source.{/Patient/Gender/Code} = 1' >
+<true>
+<assign value='"F"' property='target.{8}' action='set' />
+</true>
+<false>
+<assign value='"M"' property='target.{8}' action='set' />
+</false>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 9
+ #;
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{Aliases})' >
+<true>
+<foreach property='source.{Aliases()}' key='k2' >
+<assign value='source.{/Patient/Aliases/["_k2_"]/FamilyName}' property='target.{9(k2).1}' action='set' />
+<assign value='source.{/Patient/Aliases/["_k2_"]/GivenName}' property='target.{9(k2).2}' action='set' />
+<assign value='source.{/Patient/Aliases/["_k2_"]/MiddleName}' property='target.{9(k2).3}' action='set' />
+<assign value='source.{/Patient/Aliases/["_k2_"]/NameSuffix}' property='target.{9(k2).4}' action='set' />
+</foreach>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 10 - Race
+ #; If Race was a CodeTableTranslated type property the lookups would not be necessary
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{/Patient/Race/Code})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/Race/Code}' property='target.{10(1).1}' action='set' />
+<assign value='source.{/Patient/Race/Description}' property='target.{10(1).2}' action='set' />
+<assign value='source.{/Patient/Race/SDACodingStandard}' property='target.{10(1).3}' action='set' />
+<assign value='source.{/Patient/Race/CodeSystemVersionId}' property='target.{10(1).7}' action='set' />
+<assign value='..Lookup("PriorRaceId",target.{10(1).1})' property='target.{10(1).4}' action='set' />
+<if condition='+$Length(target.{10(1).4})' >
+<annotation>If look up successful means we prior code of type L</annotation>
+<true>
+<assign value='"L"' property='target.{10(1).6}' action='set' />
+<assign value='"4"' property='target.{10(1).8}' action='set' />
+<assign value='..Lookup("PriorRaceName",target.{10(1).4})' property='target.{10(1).5}' action='set' />
+</true>
+</if>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 10 - Races
+ #; Add support for the multiple races in Races
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{Races})' >
+<true>
+<foreach property='source.{Races()}' key='k3' >
+<assign value='source.{/Patient/Races/["_k3_"]/Code}' property='target.{10(k3).1}' action='set' />
+<assign value='source.{/Patient/Races/["_k3_"]/Description}' property='target.{10(k3).2}' action='set' />
+<assign value='source.{/Patient/Races/["_k3_"]/SDACodingStandard}' property='target.{10(k3).3}' action='set' />
+<assign value='source.{/Patient/Races/["_k3_"]/CodeSystemVersionId}' property='target.{10(k3).7}' action='set' />
+<if condition='+$Length(target.{10(1).4})' >
+<annotation>If look up successful means we prior code of type L</annotation>
+<true>
+<assign value='"L"' property='target.{10(1).6}' action='set' />
+<assign value='"4"' property='target.{10(1).8}' action='set' />
+<assign value='..Lookup("PriorRaceName",target.{10(1).4})' property='target.{10(1).5}' action='set' />
+</true>
+</if>
+</foreach>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 11 - Addresses
+ #;
+]]]]><![CDATA[></code>
+<if condition='+source.{/Patient/Addresses/[*]}' >
+<true>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Address&gt;"_source.{/Patient/Addresses/[1]}_"&lt;/Address&gt;")' property='tAddress' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Address' targetObj='tSegment' sourceObj='tAddress' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='target.{11(1)}' action='set' />
+<foreach property='source.{Addresses()}' key='k1' disabled='1' >
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Address&gt;"_source.{/Patient/Addresses/["_k1_"]}_"&lt;/Address&gt;")' property='tAddress' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Address' targetObj='tSegment' sourceObj='tAddress' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='target.{11(k1)}' action='set' />
+</foreach>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 13 (1st Always Phone, 2nd Always Email)
+ #; <assign value='""' property='target.{13(1).2}' action='set' />
+]]]]><![CDATA[></code>
+<assign value='0' property='tPID13Count' action='set' />
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Phone&gt;"_source.{/Patient/ContactInfo/HomePhoneNumber}_"&lt;/Phone&gt;")' property='tPhone' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone' targetObj='tSegment' sourceObj='tPhone' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='tPhoneNumber' action='set' />
+<if condition='+$Length(tPhoneNumber)' >
+<true>
+<assign value='tPID13Count+1' property='tPID13Count' action='set' />
+<assign value='tPhoneNumber' property='target.{13(tPID13Count)}' action='set' disabled='1' />
+<assign value='"PRN"' property='target.{13(tPID13Count).2}' action='set' />
+<assign value='"PH"' property='target.{13(tPID13Count).3}' action='set' />
+</true>
+</if>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Phone&gt;"_source.{/Patient/ContactInfo/MobilePhoneNumber}_"&lt;/Phone&gt;")' property='tPhone' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone' targetObj='tSegment' sourceObj='tPhone' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='tPhoneNumber' action='set' />
+<assign value='source.{/Patient/ContactInfo/HomePhoneNumber}' property='target.{13(1)}' action='set' />
+<if condition='+$Length(tPhoneNumber)' >
+<true>
+<assign value='tPID13Count+1' property='tPID13Count' action='set' />
+<assign value='tPhoneNumber' property='target.{13(tPID13Count)}' action='set' />
+<assign value='"ORN"' property='target.{13(tPID13Count).2}' action='set' />
+<assign value='"CP"' property='target.{13(tPID13Count).3}' action='set' />
+</true>
+</if>
+<if condition='$Length(source.{/Patient/ContactInfo/EmailAddress})' >
+<true>
+<assign value='"NET"' property='target.{13(2).2}' action='set' />
+<assign value='"Internet"' property='target.{13(2).3}' action='set' />
+<assign value='source.{/Patient/ContactInfo/EmailAddress}' property='target.{13(2).4}' action='set' />
+<assign value='"home"' property='target.{13(2).9}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 14 - Business/Work phone
+ #;
+]]]]><![CDATA[></code>
+<assign value='##class(EnsLib.EDI.XML.Document).ImportFromString("&lt;Phone&gt;"_source.{/Patient/ContactInfo/WorkPhoneNumber}_"&lt;/Phone&gt;")' property='tPhone' action='set' />
+<subtransform class='HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone' targetObj='tSegment' sourceObj='tPhone' />
+<assign value='$Translate(tSegment.OutputToString(),$Char(13),"")' property='tPhoneNumber' action='set' />
+<if condition='+$Length(tPhoneNumber)' >
+<true>
+<assign value='tPhoneNumber' property='target.{14(1)}' action='set' />
+<assign value='"WPN"' property='target.{14(1).2}' action='set' />
+<assign value='"PH"' property='target.{14(1).3}' action='set' />
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 15 - Primary Language
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/PrimaryLanguage/Code}' property='target.{15.1}' action='set' />
+<assign value='source.{/Patient/PrimaryLanguage/Description}' property='target.{15.2}' action='set' />
+<assign value='source.{/Patient/PrimaryLanguage/SDACodingStandard}' property='target.{15.3}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 16 - Marital Status
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/MaritalStatus/Code}' property='target.{16.1}' action='set' />
+<assign value='source.{/Patient/MaritalStatus/Description}' property='target.{16.2}' action='set' />
+<assign value='source.{/Patient/MaritalStatus/SDACodingStandard}' property='target.{16.3}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 17 - Religion
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/Religion/Code}' property='target.{17.1}' action='set' />
+<assign value='source.{/Patient/Religion/Description}' property='target.{17.2}' action='set' />
+<assign value='source.{/Patient/Religion/SDACodingStandard}' property='target.{17.3}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 22 - Ethnic Group 
+ #; If EthnicGroup was a CodeTableTranslated type property the lookups would not be necessary
+]]]]><![CDATA[></code>
+<if condition='+$Length(source.{/Patient/EthnicGroup/Code})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/EthnicGroup/Code}' property='target.{22(1).1}' action='set' />
+<assign value='source.{/Patient/EthnicGroup/Description}' property='target.{22(1).2}' action='set' />
+<assign value='source.{/Patient/EthnicGroup/SDACodingStandard}' property='target.{22(1).3}' action='set' />
+<if condition='+$Length(source.{/Patient/EthnicGroup/CodeSystemVersionId})' >
+<annotation>Not necessary but added for easier comparison of source and target messages</annotation>
+<true>
+<assign value='source.{/Patient/EthnicGroup/CodeSystemVersionId}' property='target.{22(1).7}' action='set' />
+</true>
+</if>
+<assign value='..Lookup("PriorEthnicGroupId",target.{22(1).1})' property='target.{22(1).4}' action='set' />
+<if condition='+$Length(target.{22(1).4})' >
+<annotation>If look up successful means we prior code of type L</annotation>
+<true>
+<assign value='"L"' property='target.{22(1).6}' action='set' />
+<assign value='"4"' property='target.{22(1).8}' action='set' />
+<assign value='..Lookup("PriorEthnicGroupName",target.{22(1).4})' property='target.{22(1).5}' action='set' />
+</true>
+</if>
+</true>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 30
+ #;
+]]]]><![CDATA[></code>
+<if condition='+source.{/Patient/IsDead/}' >
+<true>
+<assign value='"Y"' property='target.{30}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).XMLTimeStampToDateTime(source.{/Patient/DeathTime/})' property='target.{29}' action='set' />
+</true>
+<false>
+<assign value='"N"' property='target.{30}' action='set' />
+</false>
+</if>
+<code>
+<![CDATA[ 
+ #;
+ #; 33 
+ #;
+]]]]><![CDATA[></code>
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).XMLTimeStampToDateTime(source.{/Patient/EnteredOn/})' property='target.{33}' action='set' />
+<code>
+<![CDATA[ 
+ #;
+ #; 34
+ #;
+]]]]><![CDATA[></code>
+<assign value='source.{/Patient/EnteredAt/Code}' property='target.{34.1}' action='set' />
+<if condition='+$Length(target.{34.1})' >
+<true>
+<assign value='##class(HS.Data.OIDMap).OIDForType(target.{34.1},"Facility")' property='target.{34.2}' action='set' />
+<assign value='"ISO"' property='target.{34.3}' action='set' />
+</true>
+</if>
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone">
+<Description>
+/ Name Item Transform to XPN</Description>
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65665,24826.418485</TimeChanged>
+<TimeCreated>65665,24826.418485</TimeCreated>
+<DependsOn>EnsLib.EDI.XML.Document,EnsLib.HL7.Segment</DependsOn>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.EDI.XML.Document' targetClass='EnsLib.HL7.Segment' sourceDocType='HS.SDA3:HomePhoneNumber' create='new' language='objectscript' >
+<if condition='(($Length(source.{/Phone}))&amp;&amp;(source.{/Phone}&apos;="x;"))' >
+<true>
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).PhonePart("Country",source.{/Phone})' property='target.{0.5}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).PhonePart("Area",source.{/Phone})' property='target.{0.6}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).PhonePart("Local",source.{/Phone})' property='target.{0.7}' action='set' />
+<assign value='##class(HS.Gateway.SDA3.SDA3ToHL7.TransformUtil).PhonePart("Extension",source.{/Phone})' property='tExtension' action='set' />
+<if condition='+$Length($Piece(tExtension,";",2))' >
+<true>
+<assign value='$Piece(tExtension,";",2)' property='target.{0.9}' action='set' />
+</true>
+</if>
+<if condition='+$Length($Piece(tExtension,";",1))' >
+<true>
+<assign value='$Piece(tExtension,";",1)' property='target.{0.8}' action='set' />
+</true>
+</if>
+</true>
+</if>
+</transform>
+]]></Data>
+</XData>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+</Class>
+
+
+<Class name="TransformationADT.ADTAdmissionPatient">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65825,35666.504648</TimeChanged>
+<TimeCreated>65771,52791.044299</TimeCreated>
+<DependsOn>EnsLib.HL7.Message</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.HL7.Message' targetClass='EnsLib.HL7.Message' sourceDocType='2.5.1:ADT_A01' targetDocType='2.5.1:ADT_A01' create='new' language='objectscript' >
+<assign value='source' property='target' action='set' />
+<assign value='source.{PV1:AdmissionType}' property='code' action='set' />
+<assign value='source.{PV1:VisitNumber.IDNumber}' property='identifier' action='set' />
+<assign value='source.{PID:PatientIdentifierList(1).IDNumber}' property='ipp' action='set' />
+<assign value='source.{PID:PatientName(1).FamilyName}' property='family' action='set' />
+<assign value='source.{PID:PatientName(1).GivenName}' property='given' action='set' />
+<code>
+<![CDATA[ $$$LOGINFO("family : "_family)
+  $$$LOGINFO("given: "_given)
+  $$$LOGINFO("code: "_code)
+  $$$LOGINFO("identifier : "_identifier)
+  set Keys=""
+  set Keys2=""
+  
+    
+ 
+ 
+ ]]]]><![CDATA[></code>
+<assign value='"%"_identifier_"%"' property='idd' action='set' />
+<sql>
+<![CDATA[select Key INTO :Keys FROM HSFHIR_I0001_S.Encounter
+where identifier LIKE :idd
+
+
+]]]]><![CDATA[></sql>
+<sql>
+<![CDATA[ select Key INTO :Keys2 FROM HSFHIR_I0001_S.Encounter
+ where 
+ identifier LIKE :idd
+ and 
+ dateEnd <> 9999
+
+
+]]]]><![CDATA[></sql>
+<code>
+<![CDATA[   $$$LOGINFO("keyyyyyyy: "_Keys)
+   $$$LOGINFO("keyyyyyyy2: "_Keys2)]]]]><![CDATA[></code>
+<assign value='"ADT_A05"' property='target.{MSH:MessageType.MessageStructure}' action='set' />
+<assign value='"ADT"' property='target.{MSH:MessageType.MessageCode}' action='set' />
+<if condition='Keys2 = ""' >
+<true>
+<if condition='code = "399"' >
+<true>
+<assign value='"Z99"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</true>
+</if>
+<if condition='((source.{PV1:DischargeDateTime(1)} &apos;= "") &amp;&amp; (code &apos;= "399"))' >
+<true>
+<assign value='"A03"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</true>
+<false>
+<if condition='((code = "301") || ( code = "315") || (code = "316") || (code = "320") ||  ( code = "310"))' >
+<true>
+<code>
+<![CDATA[  $$$LOGINFO("  deces   ")]]]]><![CDATA[></code>
+<assign value='"A03"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</true>
+<false>
+<if condition='(( code = "101") || (code = "102") || (code = "103"))' >
+<true>
+<if condition='Keys = ""' >
+<true>
+<code>
+<![CDATA[  $$$LOGINFO("videeeeee")]]]]><![CDATA[></code>
+<assign value='"A01"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</true>
+<false>
+<code>
+<![CDATA[  $$$LOGINFO("m3abi")]]]]><![CDATA[></code>
+<assign value='"Z99"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</false>
+</if>
+</true>
+<false>
+<assign value='"Z99"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</false>
+</if>
+</false>
+</if>
+</false>
+</if>
+</true>
+<false>
+<assign value='"ZNot"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</false>
+</if>
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="TransformationADT.ADTcreationPatient">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65778,32181.281518</TimeChanged>
+<TimeCreated>65771,49054.33685</TimeCreated>
+<DependsOn>EnsLib.HL7.Message</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.HL7.Message' targetClass='EnsLib.HL7.Message' sourceDocType='2.5.1:ADT_A01' targetDocType='2.5.1:ADT_A01' create='new' language='objectscript' >
+<assign value='source' property='target' action='set' />
+<assign value='source.{PID:PatientIdentifierList(1).IDNumber}' property='ipp' action='set' disabled='1' />
+<assign value='source.{PID:PatientName(1).FamilyName}' property='family' action='set' />
+<assign value='source.{PID:PatientName(1).GivenName}' property='given' action='set' />
+<code>
+<![CDATA[ set Keys = ""
+ 
+ $$$LOGINFO("family : "_family)
+  $$$LOGINFO("given: "_given)
+ 
+ 
+ ]]]]><![CDATA[></code>
+<assign value='"%"_family_"%"' property='family' action='set' />
+<assign value='"%"_given_"%"' property='given' action='set' />
+<sql>
+<![CDATA[ select ID1, Key INTO id, :Keys FROM HSFHIR_I0001_S.Patient
+where given Like :given
+and 
+family Like :family
+]]]]><![CDATA[></sql>
+<code>
+<![CDATA[ 
+  $$$LOGINFO("Keys : "_Keys )
+
+]]]]><![CDATA[></code>
+<assign value='"ADT_A05"' property='target.{MSH:MessageType.MessageStructure}' action='set' />
+<assign value='"ADT"' property='target.{MSH:MessageType.MessageCode}' action='set' />
+<if condition='Keys = ""' >
+<true>
+<code>
+<![CDATA[  $$$LOGINFO("videeeeee")]]]]><![CDATA[></code>
+<assign value='"A28"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</true>
+<false>
+<code>
+<![CDATA[  $$$LOGINFO("m3abi")]]]]><![CDATA[></code>
+<assign value='"A31"' property='target.{MSH:MessageType.TriggerEvent}' action='set' />
+</false>
+</if>
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Document name="EnsExportNotes.EnsExportItem_2021-04-12 14-42-56_675+2.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportItem_2021-04-12 14-42-56_675+2" description="Export Notes for export EnsExportItem_2021-04-12 14-42-56_675+2">
+<![CDATA[<Deployment>
+<Creation>
+<Machine>LOCALHOST</Machine>
+<Instance>FMEIRIS</Instance>
+<Namespace>FMEFHIRV2</Namespace>
+<SourceProduction>FMEFHIRPKG.FoundationProduction</SourceProduction>
+<Username>_SYSTEM</Username>
+<UTC>2021-04-12 12:43:27.362</UTC>
+</Creation>
+<Notes>
+</Notes>
+<Contents>
+<ExportProject>EnsExportItem_2021-04-12 14-42-56_675+2</ExportProject>
+<Item num="1">FMEFHIRPKG.RouteurDestRoutingRule.CLS</Item>
+<Item num="2">FMEFHIRPKG.RoutingEnginetest1RoutingRule.CLS</Item>
+<Item num="3">HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafik.CLS</Item>
+<Item num="4">HS.Gateway.SDA3.SDA3ToHL7.ADTA0Nversionwafikversion2.CLS</Item>
+<Item num="5">HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Address.CLS</Item>
+<Item num="6">HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV1wafik.CLS</Item>
+<Item num="7">HS.Gateway.SDA3.SDA3ToHL7.SubTransform.EncounterToPV2.CLS</Item>
+<Item num="8">HS.Gateway.SDA3.SDA3ToHL7.SubTransform.PatientToPIDwafik.CLS</Item>
+<Item num="9">HS.Gateway.SDA3.SDA3ToHL7.SubTransform.PatientToPIDwafikversion2.CLS</Item>
+<Item num="10">HS.Gateway.SDA3.SDA3ToHL7.SubTransform.Phone.CLS</Item>
+<Item num="11">Settings:HL7.ADT.FMEToLIFEN.SFTP.PTD</Item>
+<Item num="12">Settings:RouteurDest.PTD</Item>
+<Item num="13">Settings:RoutingEnginetest1.PTD</Item>
+<Item num="14">TransformationADT.ADTAdmissionPatient.CLS</Item>
+<Item num="15">TransformationADT.ADTcreationPatient.CLS</Item>
+</Contents>
+<ProductionClassInExport></ProductionClassInExport>
+</Deployment>
+
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:HL7.ADT.FMEToLIFEN.SFTP.PTD"><ProjectTextDocument name="Settings:HL7.ADT.FMEToLIFEN.SFTP" description="Settings for HL7.ADT.FMEToLIFEN.SFTP in Production FMEFHIRPKG.FoundationProduction">
+<![CDATA[<Item Name="HL7.ADT.FMEToLIFEN.SFTP" Category="" ClassName="EnsLib.HL7.Operation.FTPOperation" PoolSize="1" Enabled="false" Foreground="false" Comment="%f_%Q%!+(_a)
+default file name" LogTraceEvents="false" Schedule=""><Setting Target="Adapter" Name="FTPServer">sftp.post-prod.lifen.fr</Setting><Setting Target="Adapter" Name="FTPPort">22</Setting><Setting Target="Adapter" Name="FilePath">NEPHROCARE/MLV/IN/ADT/</Setting><Setting Target="Host" Name="Filename">%f_%Q.HL7</Setting><Setting Target="Adapter" Name="Credentials">SFTPLIFENUSER</Setting><Setting Target="Adapter" Name="SSLConfig">!SFTP</Setting><Setting Target="Adapter" Name="SFTPPassphraseCredentials">SFTPLIFENUSER</Setting><Setting Target="Adapter" Name="SFTPAppendMode">Client</Setting><Setting Target="Adapter" Name="SFTPSetFileAccessModeByClient">1</Setting><Setting Target="Adapter" Name="Protocol">SFTP</Setting><Setting Target="Adapter" Name="SFTPAuthenticationMethods"></Setting></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:RouteurDest.PTD"><ProjectTextDocument name="Settings:RouteurDest" description="Settings for RouteurDest in Production FMEFHIRPKG.FoundationProduction">
+<![CDATA[<Item Name="RouteurDest" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Host" Name="BusinessRuleName">FMEFHIRPKG.RouteurDestRoutingRule</Setting></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:RoutingEnginetest1.PTD"><ProjectTextDocument name="Settings:RoutingEnginetest1" description="Settings for RoutingEnginetest1 in Production FMEFHIRPKG.FoundationProduction">
+<![CDATA[<Item Name="RoutingEnginetest1" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Host" Name="BusinessRuleName">FMEFHIRPKG.RoutingEnginetest1RoutingRule</Setting></Item>
+]]></ProjectTextDocument>
+</Document></Export>
